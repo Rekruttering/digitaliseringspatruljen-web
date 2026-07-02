@@ -475,6 +475,21 @@
 
     .kontakt-left p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.85; }
 
+    .kontakt-right {
+      background: #fff;
+      border-radius: 20px;
+      padding: 48px 44px 40px;
+      box-shadow: 0 24px 64px rgba(28,27,77,0.10), 0 2px 8px rgba(28,27,77,0.04);
+      border: 1px solid rgba(28,27,77,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .kontakt-right::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg, var(--ring-red), var(--ring-orange), var(--ring-gold), var(--ring-green));
+    }
+
     .kontakt-video-block {
       position: relative; margin-top: 40px;
       height: 220px; border-radius: 4px 4px 0 0; overflow: hidden;
@@ -511,30 +526,40 @@
       100% { transform: translateX(-50%); }
     }
 
-    .form-field { margin-bottom: 16px; }
+    .form-field { margin-bottom: 22px; }
 
     label {
       display: block; font-size: 11px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--navy); margin-bottom: 8px;
+      color: var(--navy); margin-bottom: 9px;
     }
 
     input, textarea, select {
-      width: 100%; background: transparent; border: none;
-      border-bottom: 1px solid rgba(28,27,77,0.2);
-      padding: 10px 0; font-family: var(--sans); font-size: 15px;
-      font-weight: 300; color: var(--navy); outline: none;
-      transition: border-color 0.2s; -webkit-appearance: none;
+      width: 100%; background: var(--cream);
+      border: 1.5px solid rgba(28,27,77,0.12);
+      border-radius: 9px;
+      padding: 13px 15px; font-family: var(--sans); font-size: 15px;
+      font-weight: 400; color: var(--navy); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
-    input::placeholder, textarea::placeholder { color: rgba(28,27,77,0.3); }
-    input:focus, textarea:focus, select:focus { border-bottom-color: var(--gold); }
-    textarea { resize: none; height: 80px; }
+    input::placeholder, textarea::placeholder { color: rgba(28,27,77,0.4); }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold); background: #fff;
+      box-shadow: 0 0 0 4px rgba(184,150,12,0.12);
+    }
+    textarea { resize: none; height: 90px; }
 
-    select { cursor: pointer; color: rgba(28,27,77,0.7); }
+    select {
+      cursor: pointer; color: rgba(28,27,77,0.85);
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231C1B4D' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 15px center;
+      padding-right: 38px;
+    }
     select option { color: var(--navy); background: #fff; }
 
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
 
     .choice-list { margin-top: 12px; }
     .choice-row {
@@ -556,12 +581,15 @@
 
     .btn-submit {
       background: var(--gold); color: #fff; border: none;
+      border-radius: 9px;
       padding: 16px 36px; font-family: var(--sans);
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; cursor: pointer;
-      transition: opacity 0.2s; margin-top: 8px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(184,150,12,0.25);
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s; margin-top: 8px;
     }
-    .btn-submit:hover { opacity: 0.85; }
+    .btn-submit:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 12px 26px rgba(184,150,12,0.32); }
 
     /* ── FOOTER ── */
     footer {
@@ -684,6 +712,8 @@
       .team-section { padding: 36px 16px; }
       .section-heading { margin-bottom: 36px; }
       .kontakt-section { padding: 36px 16px; }
+      .kontakt-right { padding: 32px 24px 28px; border-radius: 16px; }
+      .form-row-2 { grid-template-columns: 1fr; gap: 0; }
       footer { padding: 18px 16px; font-size: 11px; }
       #back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
       .mobile-nav a { font-size: 26px; }
