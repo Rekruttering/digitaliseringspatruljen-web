@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <script>
+    /* Cache-bust: force reload if browser served stale version — v20260629b */
+    (function() {
+      var key = 'dp_v', ver = '20260629b';
+      if (sessionStorage.getItem(key) !== ver) {
+        sessionStorage.setItem(key, ver);
+        location.reload(true);
+      }
+    })();
+  </script>
+  <title>Digitaliseringspatruljen – Ansvarlig digitalisering og AI sat i system</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #F5F0E6;
+      --navy:   #1C1B4D;
+      --olive:  #4A5740;
+      --purple: #3D1A6B;
+      --orange-red: #C94A2B;
+      --orange: #DC8C3C;
+      --amber:  #F0C878;
+      --steel:  #3D6B8A;
+      --gold:   #B8960C;
+      --light:  #F8F6F1;
+      /* Logo-ringfarver, målt direkte fra nyt-logo-crop.png */
+      --ring-red:    #9E2A1F;
+      --ring-orange: #C96A24;
+      --ring-gold:   #E3A868;
+      --ring-green:  #5C9A5F;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--light); color: var(--navy); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    /* ── HEADER ── */
+    header {
+      background: rgba(245,240,230,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(28,27,77,0.1);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+
+    .header-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .header-logo-text {
+      font-family: var(--sans); font-size: 24px; font-weight: 300;
+      letter-spacing: 0.02em; color: var(--navy); line-height: 1.2;
+    }
+    .header-logo-sub {
+      font-size: 10px; font-weight: 400; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(28,27,77,0.45);
+      display: block; margin-top: 4px;
+    }
+
+    header nav { display: flex; gap: 32px; }
+    header nav a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--navy); text-decoration: none;
+      opacity: 0.6; transition: opacity 0.2s;
+    }
+    header nav a:hover { opacity: 1; }
+
+    .header-cta {
+      background: var(--navy); color: var(--cream) !important;
+      padding: 10px 20px; opacity: 1 !important;
+      font-size: 11px !important;
+    }
+    .header-cta:hover { opacity: 0.85 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 60vh; min-height: 400px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&q=85&auto=format&fit=crop');
+      background-size: cover; background-position: center 30%;
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,27,77,0.82) 0%, rgba(28,27,77,0.2) 60%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 72px 72px;
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--gold); color: #fff;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 5px 14px; margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(44px, 6vw, 86px);
+      font-weight: 300; line-height: 1.05;
+      color: #fff; margin-bottom: 8px;
+    }
+
+    .hero-title strong {
+      font-weight: 600; display: block;
+      font-size: clamp(52px, 7vw, 100px);
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: #fff;
+      overflow: hidden;
+      padding: 13px 0;
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      white-space: nowrap;
+      animation: ticker-scroll 70s linear infinite;
+    }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 0 40px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--navy);
+    }
+    .ticker-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--navy); opacity: 0.4; flex-shrink: 0;
+    }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── INTRO BAND ── */
+    .intro-band {
+      position: relative;
+      background: #4a9648;
+      color: #fff; padding: 64px 72px;
+      overflow: hidden;
+    }
+    .intro-band-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.30;
+    }
+
+    .intro-band-inner {
+      position: relative; z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .intro-band h2 {
+      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300; line-height: 1.2; margin-bottom: 24px;
+    }
+
+    .intro-band p {
+      font-size: 16px; font-weight: 300; line-height: 1.8;
+      max-width: 700px; opacity: 0.92;
+    }
+
+    .intro-band p + p { margin-top: 16px; }
+
+    /* ── WHITE SECTION ── */
+    .white-section {
+      background: #fff; padding: 80px 72px;
+    }
+
+    .two-col-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    }
+
+    .col-left h3 {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 20px;
+    }
+
+    .col-left p { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--navy); margin-bottom: 14px; }
+
+    .col-right h3 {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 20px;
+    }
+
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: 14px; font-weight: 300; line-height: 1.6;
+      color: var(--navy); padding: 10px 0;
+      border-bottom: 1px solid rgba(28,27,77,0.08);
+    }
+
+    .checklist li::before {
+      content: '';
+      width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+      background: var(--olive);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9l3.5 3.5L14 6' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    /* ── PERSONA-KORT ── */
+    .persona-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; margin: 40px 0 48px;
+    }
+    .persona-card {
+      border: 1.5px solid rgba(28,27,77,0.1);
+      border-radius: 12px; padding: 28px 22px;
+      background: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .persona-card:hover {
+      box-shadow: 0 8px 28px rgba(28,27,77,0.1);
+      transform: translateY(-3px);
+    }
+    .persona-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 16px;
+    }
+    .persona-card h4 {
+      font-size: 14px; font-weight: 600; color: var(--navy);
+      margin-bottom: 10px; line-height: 1.35;
+    }
+    .persona-card p {
+      font-size: 13px; font-weight: 300; color: rgba(28,27,77,0.7);
+      line-height: 1.7;
+    }
+    .kan-du-boks {
+      border-top: 1.5px solid rgba(28,27,77,0.1);
+      padding-top: 40px; margin-top: 8px;
+    }
+    .kan-du-boks h3 {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 24px;
+    }
+    .checklist-inline { columns: 2; gap: 40px; }
+    @media (max-width: 900px) {
+      .persona-grid { grid-template-columns: repeat(2,1fr); }
+      .checklist-inline { columns: 1; }
+    }
+    @media (max-width: 560px) {
+      .persona-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FORLØB (dark bg with image) ── */
+    .forloeb-section {
+      position: relative;
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .forloeb-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.18;
+    }
+
+    .forloeb-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 0;
+      min-height: 600px;
+    }
+
+    .forloeb-left {
+      padding: 72px 56px 72px 72px;
+      color: #fff;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .forloeb-left h2 {
+      font-family: var(--serif); font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 300; line-height: 1.15; margin-bottom: 24px;
+    }
+
+    .forloeb-left p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.85; }
+
+    .forloeb-right {
+      background: rgba(255,255,255,0.07);
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding: 56px 56px 56px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .forloeb-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+    }
+
+    .accordion-item {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      border-left: 8px solid transparent;
+      padding-left: 18px; margin-left: -18px;
+      transition: border-left-color 0.2s;
+    }
+    .accordion-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
+
+    .accordion-item.risk-minimal     { border-left-color: var(--ring-green); }
+    .accordion-item.risk-begraenset  { border-left-color: var(--ring-gold); }
+    .accordion-item.risk-hoej        { border-left-color: var(--ring-orange); }
+    .accordion-item.risk-uacceptabel { border-left-color: var(--ring-red); }
+
+    .accordion-item.risk-minimal     .accordion-btn-num { background: var(--ring-green); }
+    .accordion-item.risk-begraenset  .accordion-btn-num { background: var(--ring-gold); color: var(--navy); }
+    .accordion-item.risk-hoej        .accordion-btn-num { background: var(--ring-orange); }
+    .accordion-item.risk-uacceptabel .accordion-btn-num { background: var(--ring-red); }
+
+    .accordion-item.risk-minimal     .accordion-icon { border-color: var(--ring-green); }
+    .accordion-item.risk-begraenset  .accordion-icon { border-color: var(--ring-gold); }
+    .accordion-item.risk-hoej        .accordion-icon { border-color: var(--ring-orange); }
+    .accordion-item.risk-uacceptabel .accordion-icon { border-color: var(--ring-red); }
+
+    .accordion-item.risk-minimal     .accordion-btn[aria-expanded="true"] .accordion-icon { background: var(--ring-green); border-color: var(--ring-green); }
+    .accordion-item.risk-begraenset  .accordion-btn[aria-expanded="true"] .accordion-icon { background: var(--ring-gold); border-color: var(--ring-gold); }
+    .accordion-item.risk-hoej        .accordion-btn[aria-expanded="true"] .accordion-icon { background: var(--ring-orange); border-color: var(--ring-orange); }
+    .accordion-item.risk-uacceptabel .accordion-btn[aria-expanded="true"] .accordion-icon { background: var(--ring-red); border-color: var(--ring-red); }
+
+    .accordion-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 0; color: #fff; text-align: left;
+    }
+
+    .accordion-btn-text {
+      font-size: 14px; font-weight: 400; letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    .accordion-btn-num {
+      font-family: var(--sans); font-size: 11px; font-weight: 700;
+      color: #fff; margin-right: 16px; flex-shrink: 0;
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .accordion-icon {
+      width: 26px; height: 26px; border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.3s;
+    }
+
+    .accordion-btn[aria-expanded="true"] .accordion-icon { background: var(--gold); transform: rotate(45deg); }
+
+    .accordion-icon svg { display: block; }
+
+    .accordion-body {
+      display: none; padding: 0 0 18px;
+      font-size: 13px; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .accordion-body.open { display: block; }
+
+        /* ── PATRULJEN ── */
+    .team-section { background: var(--cream); padding: 80px 72px; }
+
+    .section-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300; color: var(--navy); margin-bottom: 56px;
+    }
+
+    .team-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+
+    .team-card {
+      display: grid; grid-template-columns: 180px 1fr;
+      background: transparent;
+    }
+
+    .team-photo {
+      width: 180px; height: 100%;
+      min-height: 220px;
+      object-fit: cover; object-position: center top; display: block;
+    }
+
+    .team-info {
+      background: var(--steel);
+      padding: 28px 28px 0;
+      display: flex; flex-direction: column;
+    }
+
+    .team-name {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff; margin-bottom: 6px;
+    }
+
+    .team-title {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85);
+      margin-bottom: 12px; line-height: 1.4;
+    }
+
+    .team-bio {
+      font-size: 13px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+      overflow: hidden; flex: 1;
+    }
+
+    .team-expand {
+      background: var(--navy); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      height: 40px; color: #fff;
+      font-size: 22px; line-height: 1;
+      margin: 16px -28px 0;
+      transition: background 0.2s;
+    }
+    .team-expand:hover { background: rgba(0,0,0,0.3); }
+
+    @media (max-width: 768px) {
+      .team-section { padding: 56px 28px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { grid-template-columns: 140px 1fr; }
+      .team-photo { width: 140px; min-height: 200px; }
+    }
+
+    @media (max-width: 480px) {
+      .team-card { grid-template-columns: 1fr; }
+      .team-photo { width: 100%; height: 260px; min-height: unset; }
+      .team-expand { margin: 16px 0 0; }
+    }
+
+    
+    /* ── KONTAKT ── */
+    .kontakt-section {
+      background: var(--cream); color: var(--navy); padding: 56px 72px;
+    }
+
+    .kontakt-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .kontakt-left, .kontakt-right { min-width: 0; }
+
+    .kontakt-left h2 {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300; margin-bottom: 24px;
+    }
+
+    .kontakt-left p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.85; }
+
+    .kontakt-video-block {
+      position: relative; margin-top: 40px;
+      height: 220px; border-radius: 4px 4px 0 0; overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .kontakt-video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .kontakt-video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,27,77,0.82) 0%, rgba(28,27,77,0.2) 60%, transparent 100%);
+    }
+    .kontakt-video-content { position: relative; z-index: 2; padding: 28px; }
+    .kontakt-video-title {
+      font-family: var(--serif); font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 300; color: #fff; line-height: 1.1;
+    }
+
+    .kontakt-ticker-wrap {
+      background: var(--navy); overflow: hidden; padding: 12px 0; border-radius: 0 0 4px 4px;
+    }
+    .kontakt-ticker-track {
+      display: flex; width: max-content;
+      animation: kontakt-ticker-scroll 12s linear infinite;
+    }
+    .kontakt-ticker-wrap:hover .kontakt-ticker-track { animation-play-state: paused; }
+    .kontakt-ticker-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0 22px; font-size: 13px; color: #fff; white-space: nowrap;
+    }
+    .kontakt-ticker-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    @keyframes kontakt-ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .form-field { margin-bottom: 16px; }
+
+    label {
+      display: block; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy); margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid rgba(28,27,77,0.2);
+      padding: 10px 0; font-family: var(--sans); font-size: 15px;
+      font-weight: 300; color: var(--navy); outline: none;
+      transition: border-color 0.2s; -webkit-appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(28,27,77,0.3); }
+    input:focus, textarea:focus, select:focus { border-bottom-color: var(--gold); }
+    textarea { resize: none; height: 80px; }
+
+    select { cursor: pointer; color: rgba(28,27,77,0.7); }
+    select option { color: var(--navy); background: #fff; }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+    .choice-list { margin-top: 12px; }
+    .choice-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 9px 0; border-bottom: 1px solid rgba(28,27,77,0.08);
+      cursor: pointer; font-size: 14px; font-weight: 300;
+      color: rgba(28,27,77,0.75); text-transform: none; letter-spacing: 0;
+      transition: color 0.2s;
+    }
+    .choice-row:hover { color: var(--navy); }
+    .choice-row.selected { color: var(--navy); }
+    .choice-row.selected .choice-icon svg circle { stroke: var(--gold); }
+    .choice-row.selected .choice-icon svg .choice-check { opacity: 1; stroke: var(--gold); }
+    .choice-icon { flex-shrink: 0; width: 22px; height: 22px; color: rgba(28,27,77,0.3); transition: color 0.2s; }
+    .choice-row:hover .choice-icon { color: rgba(28,27,77,0.6); }
+    .choice-row.selected .choice-icon { color: var(--gold); }
+    .choice-icon svg { width: 22px; height: 22px; }
+    .choice-row-all { border-top: 1px solid rgba(28,27,77,0.12); margin-top: 4px; color: rgba(28,27,77,0.55); }
+
+    .btn-submit {
+      background: var(--gold); color: #fff; border: none;
+      padding: 16px 36px; font-family: var(--sans);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer;
+      transition: opacity 0.2s; margin-top: 8px;
+    }
+    .btn-submit:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0e0d2e; color: rgba(255,255,255,0.4);
+      text-align: center; padding: 28px 40px;
+      font-size: 12px; letter-spacing: 0.06em;
+    }
+
+    /* ── MOBILE HAMBURGER ── */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); margin: 5px 0; transition: 0.3s; }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; background: var(--navy);
+      z-index: 999; flex-direction: column; align-items: center;
+      justify-content: center; gap: 32px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--serif); font-size: 32px; font-weight: 300;
+      color: #fff; text-decoration: none;
+    }
+    .mobile-nav-close {
+      position: absolute; top: 24px; right: 28px;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.5); font-size: 28px; line-height: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 16px 28px; }
+      header nav { display: none; }
+      .hamburger { display: block; }
+      .hero-content { padding: 0 32px 48px; }
+      .intro-band { padding: 48px 32px; }
+      .white-section { padding: 56px 32px; }
+      .two-col-grid { grid-template-columns: 1fr; gap: 48px; }
+      .forloeb-inner { grid-template-columns: 1fr; }
+      .forloeb-left { padding: 56px 32px 40px; }
+      .forloeb-right { padding: 40px 32px 56px; border-left: none; border-top: 1px solid rgba(255,255,255,0.12); }
+      .team-section { padding: 56px 28px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { grid-template-columns: 140px 1fr; }
+              .team-photo {
+      width: 160px; height: 200px;
+      object-fit: cover; object-position: center top; display: block;
+      filter: grayscale(10%);
+    }
+      .kontakt-section { padding: 56px 28px; }
+      .kontakt-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero { height: 80vh; }
+      .hero-title strong { font-size: 44px; }
+      .team-card { grid-template-columns: 1fr; }
+              .team-photo {
+      width: 160px; height: 200px;
+      object-fit: cover; object-position: center top; display: block;
+      filter: grayscale(10%);
+    }
+      .team-expand { margin: 14px 0 0; }
+    }
+  
+    /* ── TILBAGE TIL TOPPEN ── */
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 999;
+      background: var(--navy); color: #fff;
+      border: none; border-radius: 50%;
+      width: 48px; height: 48px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 16px rgba(28,27,77,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { transform: translateY(-3px); background: var(--purple, #3D1A6B); }
+    #back-to-top svg { width: 20px; height: 20px; }
+
+    /* ── AUDIENCE LIST ── */
+    .audience-list { list-style: none; margin-top: 8px; }
+    .audience-list li {
+      font-size: 14px; font-weight: 300; line-height: 1.65;
+      color: var(--navy); padding: 10px 0 10px 22px;
+      border-bottom: 1px solid rgba(28,27,77,0.08);
+      position: relative;
+    }
+    .audience-list li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--olive); font-size: 13px; top: 11px;
+    }
+
+    /* ── IPAD (≤768px) ── */
+    @media (max-width: 768px) {
+      header img { height: 64px !important; }
+      .hero-content { padding: 0 28px 44px; }
+      .intro-band { padding: 48px 28px; }
+      .white-section { padding: 52px 28px; }
+      .forloeb-left { padding: 52px 28px 36px; }
+      .forloeb-right { padding: 36px 28px 52px; }
+      .kontakt-section { padding: 52px 28px; }
+      footer { padding: 20px 28px; }
+    }
+
+    /* ── MOBIL (≤480px) ── */
+    @media (max-width: 480px) {
+      header { padding: 10px 16px; }
+      header img { height: 52px !important; }
+      .hero-content { padding: 0 16px 32px; }
+      .hero-tag { font-size: 10px; padding: 4px 10px; }
+      .ticker-item { padding: 0 20px; font-size: 11px; }
+      .intro-band { padding: 36px 16px; }
+      .intro-band h2 { font-size: 22px; }
+      .intro-band p { font-size: 14px; }
+      .white-section { padding: 36px 16px; }
+      .two-col-grid { gap: 36px; }
+      .forloeb-left { padding: 36px 16px 28px; }
+      .forloeb-right { padding: 28px 16px 36px; }
+      .team-section { padding: 36px 16px; }
+      .section-heading { margin-bottom: 36px; }
+      .kontakt-section { padding: 36px 16px; }
+      footer { padding: 18px 16px; font-size: 11px; }
+      #back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+      .mobile-nav a { font-size: 26px; }
+    }
+
+    /* ── LILLE MOBIL (≤375px) ── */
+    @media (max-width: 375px) {
+      header img { height: 44px !important; }
+      .hero-title strong { font-size: 34px; }
+    }
+
+    </style>
+</head>
+<body>
+
+<!-- ── MOBILE NAV ── -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileClose">✕</button>
+  <a href="om-os.html" onclick="closeMobileNav()">Om os</a>
+  <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
+</nav>
+
+<!-- ── HEADER ── -->
+<header>
+  <a class="header-logo" href="#">
+    <img src="Foto/nyt-logo-crop.png" alt="Digitaliseringspatruljen" style="height:80px;width:auto">
+  </a>
+
+  <nav>
+    <a href="om-os.html">Om os</a>
+    <a href="#kontakt" class="header-cta">Kontakt</a>
+  </nav>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Vi rådgiver og underviser kommuner, jobcentre og virksomheder</span>
+    <h1 class="hero-title">
+      Ansvarlig digitalisering og AI
+    </h1>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- Første sæt -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver kommuner om ansvarlig digitalisering og AI i sagsbehandling</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi holder foredrag for offentlige ledere og beslutningstagere</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi oversætter EU AI Act til konkret praksis for din organisation</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi hjælper jobcentre med at navigere beskæftigelsesreformen 2026</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi underviser medarbejdere i ansvarlig digitalisering og AI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi kortlægger risici og udarbejder handleplaner for digitalisering og AI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver virksomheder om digitalisering, AI-regulering og compliance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi er et kollektiv af eksperter med rod i jura, teknologi og forvaltning</span>
+    <!-- Duplikeret sæt for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver kommuner om ansvarlig digitalisering og AI i sagsbehandling</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi holder foredrag for offentlige ledere og beslutningstagere</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi oversætter EU AI Act til konkret praksis for din organisation</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi hjælper jobcentre med at navigere beskæftigelsesreformen 2026</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi underviser medarbejdere i ansvarlig digitalisering og AI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi kortlægger risici og udarbejder handleplaner for digitalisering og AI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver virksomheder om digitalisering, AI-regulering og compliance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Vi er et kollektiv af eksperter med rod i jura, teknologi og forvaltning</span>
+  </div>
+</div>
+
+<!-- ── INTRO BAND ── -->
+<section class="intro-band" id="om-os">
+  <div class="intro-band-bg"></div>
+  <div class="intro-band-inner">
+    <h2>– Vi møder mennesker og organisationer der hvor de er</h2>
+    <p>
+      Digitaliseringspatruljen er et hold med vidt forskellige baggrunde — teknologi, forvaltning, beskæftigelse og undervisning. Forskelligheden er ikke en tilfældighed. Det er præcis det, der gør os stærke.
+    </p>
+    <p>
+      Vi hjælper med at navigere ansvarligt i et arbejdsliv der forandrer sig hurtigere end nogensinde.
+    </p>
+  </div>
+</section>
+
+<!-- ── MÅLGRUPPE + KAN DU ── -->
+<section class="white-section" id="ideen">
+  <div class="two-col-grid">
+    <div class="col-left">
+      <h3>Målgruppe</h3>
+      <ul class="audience-list">
+        <li>Kommuner og jobcentre, der skal forholde sig til AI i sagsbehandling under den nye beskæftigelsesreform</li>
+        <li>Virksomheder, a-kasser og vikarbureauer, der bruger AI i rekruttering og ansættelse og er omfattet af EU's AI Act</li>
+        <li>Skoler og uddannelsesinstitutioner, der vil klæde medarbejdere og ledere på til det nye regulatoriske landskab</li>
+        <li>Uddannelsessteder og jobsøgende der vil bruge AI aktivt i mødet med arbejdsmarkedet</li>
+      </ul>
+    </div>
+    <div class="col-right">
+      <h3>Med Digitaliseringspatruljen kan din organisation:</h3>
+      <ul class="checklist">
+        <li>Kortlægge og vurdere jeres brug af digitalisering og AI i kommunikation, vidensarbejde og daglige processer</li>
+        <li>Opfylde kravene i EU's AI Act til højrisikosystemer</li>
+        <li>Dokumentere ansvarlig AI-anvendelse over for myndigheder og borgere</li>
+        <li>Etablere governance-strukturer der holder i det lange løb</li>
+        <li>Kompetenceløfte medarbejdere og ledere i AI-forståelse og regulering</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── FORLØB ── -->
+<section class="forloeb-section" id="forloeb">
+  <div class="forloeb-bg"></div>
+  <div class="forloeb-inner">
+    <div class="forloeb-left">
+      <h2>Fire forløb — én patrulje</h2>
+      <p>EU's AI Act inddeler AI-systemer i fire risikoniveauer — fra minimal risiko til forbudt brug. Vi har bygget vores rådgivning op efter samme trapper, så I altid ved, hvor I står, og hvad næste skridt er.</p>
+    </div>
+
+    <div class="forloeb-right">
+      <p class="forloeb-title">Forløb</p>
+
+      <div class="accordion-item risk-minimal">
+        <button class="accordion-btn" aria-expanded="false">
+          <span style="display:flex;align-items:center;gap:0">
+            <span class="accordion-btn-num">01</span>
+            <span class="accordion-btn-text">Minimal risiko — Kortlægning</span>
+          </span>
+          <span class="accordion-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          AI-modeller adskiller sig markant i, hvad de faktisk formår: nogle er trænet til at generere og omskrive tekst, andre til at besvare spørgsmål inden for afgrænsede domæner, andre igen til at genkende mønstre i data. Den forskel har betydning for, hvor pålidelige svarene er. Vi skaber overblik over, hvilke modeller der reelt er i spil, og hvilke svagheder man skal kende: systematisk bias i outputtet, og hallucinationer — hvor modellen genererer plausible, men faktuelt forkerte svar.
+        </div>
+      </div>
+
+      <div class="accordion-item risk-begraenset">
+        <button class="accordion-btn" aria-expanded="false">
+          <span style="display:flex;align-items:center;gap:0">
+            <span class="accordion-btn-num">02</span>
+            <span class="accordion-btn-text">Begrænset risiko — Gennemsigtighed og oplæring</span>
+          </span>
+          <span class="accordion-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          Når en AI-model indgår i direkte kontakt med mennesker — besvarer spørgsmål, guider gennem et forløb — stiller lovgivningen krav om, at det tydeligt fremgår, at der er tale om en maskine, ikke et menneske. Vi klæder medarbejdere på til at identificere og håndtere bias og hallucinationer i praksis, og til at anvende AI ansvarligt i kontakten med borgere, kunder eller andre mennesker.
+        </div>
+      </div>
+
+      <div class="accordion-item risk-hoej">
+        <button class="accordion-btn" aria-expanded="false">
+          <span style="display:flex;align-items:center;gap:0">
+            <span class="accordion-btn-num">03</span>
+            <span class="accordion-btn-text">Høj risiko — Praktisk vejledning til rekruttering og sagsbehandling</span>
+          </span>
+          <span class="accordion-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          AI-modeller, der vurderer, sorterer eller matcher mennesker — i en ansættelsesproces, i sagsbehandlingen af en ydelse — klassificeres som højrisiko, netop fordi bias her kan få reelle konsekvenser for den enkeltes retsstilling og muligheder. Vi giver konkret, anvendelig indsigt i, hvordan kravene håndteres i praksis, uden at det kræver en jurist eller en dataspecialist at følge dem.
+        </div>
+      </div>
+
+      <div class="accordion-item risk-uacceptabel">
+        <button class="accordion-btn" aria-expanded="false">
+          <span style="display:flex;align-items:center;gap:0">
+            <span class="accordion-btn-num">04</span>
+            <span class="accordion-btn-text">Uacceptabel risiko — Hvad man skal undgå</span>
+          </span>
+          <span class="accordion-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          Enkelte former for AI-anvendelse er ikke blot risikable, men direkte forbudt — herunder AI, der profilerer eller "scorer" mennesker ud fra adfærd uden deres viden. Vi klarlægger, i et sprog uden juridisk jargon, hvor grænsen går, så organisationen kan navigere sikkert uden selv at skulle besidde specialistviden på området.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDEO ── -->
+<section style="background: var(--cream); padding: 72px 72px;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <p style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--olive); margin-bottom:16px;">Mød patruljen</p>
+    <h2 style="font-family: var(--serif); font-size: clamp(30px,4vw,52px); font-weight:300; color:var(--navy); margin-bottom:40px; line-height:1.1;">Hør mere om underviserne.</h2>
+    <div style="position:relative; padding-bottom:56.25%; height:0; background:var(--navy); border-radius:2px; overflow:hidden;">
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
+        <div style="width:64px; height:64px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M2 2l16 10L2 22V2z" fill="rgba(255,255,255,0.6)"/></svg>
+        </div>
+        <p style="color:rgba(255,255,255,0.35); font-size:13px; letter-spacing:0.08em; text-transform:uppercase;">Video indsættes her</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ── -->
+<section class="kontakt-section" id="kontakt">
+  <div class="kontakt-inner">
+    <div class="kontakt-left">
+      <h2>Kom i kontakt.</h2>
+      <p>En uforpligtende samtale hvor vi afklarer jeres behov og finder ud af, om vi er det rette match.</p>
+      <p style="margin-top:16px;font-size:13px;opacity:0.5;">Usikker på hvilket forløb du har brug for? <a href="#forloeb" style="color:var(--gold);text-decoration:none;">Læs om vores fire forløb ↑</a></p>
+    </div>
+    <div class="kontakt-right">
+      <form id="kontaktForm">
+
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="kname">Navn</label>
+            <input type="text" id="kname" placeholder="Dit fulde navn" required/>
+          </div>
+          <div class="form-field">
+            <label for="korg">Organisation</label>
+            <input type="text" id="korg" placeholder="Kommune, virksomhed, a-kasse…"/>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-field">
+            <label for="kemail">E-mail</label>
+            <input type="email" id="kemail" placeholder="din@email.dk" required/>
+          </div>
+          <div class="form-field">
+            <label for="ktopic">Hvad drejer det sig om?</label>
+            <select id="ktopic">
+              <option value="">Vælg forløb…</option>
+              <option value="minimal-risiko">Minimal risiko — Kortlægning</option>
+              <option value="begraenset-risiko">Begrænset risiko — Gennemsigtighed og oplæring</option>
+              <option value="hoej-risiko">Høj risiko — Compliance og dokumentation</option>
+              <option value="uacceptabel-risiko">Uacceptabel risiko — Risikoscreening</option>
+              <option value="andet">Andet / ved ikke endnu</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="kmsg">Kort om dit behov <span style="font-weight:300;opacity:0.5;">(valgfrit)</span></label>
+          <textarea id="kmsg" placeholder="Hvad ønsker du at opnå?"></textarea>
+        </div>
+
+        <button class="btn-submit" type="submit">Send henvendelse</button>
+      </form>
+      <div id="formOk" style="display:none;color:var(--navy);margin-top:24px;font-size:15px;font-weight:300;line-height:1.7;">
+        Tak for din henvendelse. Vi vender tilbage inden for 2 hverdage.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  © 2026 Digitaliseringspatruljen &nbsp;·&nbsp; Ansvarlig digitalisering og AI, sat i system
+</footer>
+
+<script>
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+  // ── ACCORDION ──
+  document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      document.querySelectorAll('.accordion-btn').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+
+  // ── CHOICE ROWS ──
+  document.querySelectorAll('.choice-row').forEach(row => {
+    row.addEventListener('click', function() {
+      const cb = this.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      this.classList.toggle('selected', cb.checked);
+    });
+  });
+
+  // ── FORM ──
+  document.getElementById('kontaktForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('formOk').style.display = 'block';
+  });
+</script>
+
+<!-- Tilbage til toppen -->
+<button id="back-to-top" aria-label="Tilbage til toppen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+<script>
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+<script>
+  // ── SLOWMOTION BAGGRUNDSVIDEO ──
+  document.querySelectorAll('video[data-slow]').forEach(v => {
+    v.playbackRate = 0.5;
+    v.addEventListener('loadedmetadata', () => { v.playbackRate = 0.5; });
+  });
+</script>
+
+</body>
+</html>

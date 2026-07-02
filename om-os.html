@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>Om os – Digitaliseringspatruljen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E6; --navy: #1C1B4D; --olive: #4A5740;
+      --steel: #3D6B8A; --gold: #B8960C;
+      --orange: #DC8C3C; --amber: #F0C878; --rust: #B45028;
+      --orange-red: #C94A2B; --purple: #3D1A6B;
+      --light: #F8F6F1;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: #fff; color: var(--navy); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    /* ── KOMPAKT HEADER-STRIPE ── */
+    .top-section {
+      background: rgba(245,240,230,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(28,27,77,0.1);
+      padding: 0 80px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .top-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .header-logo { display: flex; align-items: center; text-decoration: none; }
+    .top-nav nav { display: flex; gap: 32px; align-items: center; }
+    .top-nav nav a { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(28,27,77,0.7); text-decoration: none; transition: color 0.2s; }
+    .top-nav nav a:hover { color: var(--navy); }
+    .top-nav nav a.active { color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 2px; }
+    .header-cta { background: var(--navy); color: #fff !important; padding: 9px 20px; font-size: 11px !important; border-radius: 1px; }
+    .header-cta:hover { opacity: 0.85; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); margin: 5px 0; }
+
+    /* ── SIDETITEL på hvid ── */
+    .page-header {
+      position: relative;
+      background: #4a9648; padding: 64px 80px 56px;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center top;
+      opacity: 0.35;
+    }
+    .page-header .breadcrumb,
+    .page-header .page-title,
+    .page-header .page-tagline { position: relative; z-index: 1; }
+    .breadcrumb {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 16px;
+    }
+    .page-title {
+      font-family: var(--serif); font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 300; color: #fff; line-height: 1.0; max-width: 820px;
+    }
+    .page-tagline {
+      font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.85);
+      margin-top: 16px; max-width: 520px; line-height: 1.7;
+    }
+
+    /* ── INTRO (2-kol) ── */
+    .intro-wrap {
+      max-width: 1200px; margin: 0 auto; padding: 88px 80px;
+      display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: start;
+    }
+    .intro-left h2 {
+      font-family: var(--serif); font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 500; line-height: 1.2; color: var(--navy); margin-bottom: 32px;
+    }
+    .intro-left p {
+      font-size: 15px; font-weight: 300; line-height: 1.9;
+      color: rgba(28,27,77,0.8); margin-bottom: 20px;
+    }
+    .intro-left strong { font-weight: 500; color: var(--navy); }
+
+    /* ── BROCHURE MOCKUP ── */
+    .brochure-wrap { position: sticky; top: 100px; }
+    .brochure {
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(28,27,77,0.14), 0 1px 4px rgba(28,27,77,0.08);
+      border-radius: 2px; overflow: hidden;
+      transform: rotate(1.5deg);
+      transition: transform 0.3s;
+    }
+    .brochure:hover { transform: rotate(0deg); }
+    .brochure-top {
+      background: var(--navy); padding: 28px 28px 20px;
+    }
+    .brochure-logo-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    }
+    .brochure-logo-text {
+      font-family: var(--serif); font-size: 13px; font-weight: 500;
+      color: #fff; line-height: 1.2;
+    }
+    .brochure-logo-sub {
+      font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); display: block;
+    }
+    .brochure-color-bar {
+      display: flex; gap: 0; height: 4px; margin-bottom: 24px;
+    }
+    .brochure-color-bar span { flex: 1; }
+    .brochure-title {
+      font-family: var(--serif); font-size: 22px; font-weight: 300;
+      color: #fff; line-height: 1.2; margin-bottom: 8px;
+    }
+    .brochure-subtitle {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber);
+    }
+    .brochure-body { padding: 24px 28px 28px; background: #fff; }
+    .brochure-tag {
+      display: inline-block; background: var(--orange); color: #fff;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 5px 10px; margin-bottom: 16px;
+    }
+    .brochure-body p {
+      font-size: 12px; font-weight: 300; line-height: 1.7;
+      color: rgba(28,27,77,0.7); margin-bottom: 10px;
+    }
+    .brochure-body ul {
+      list-style: none; padding: 0; margin-top: 12px;
+    }
+    .brochure-body ul li {
+      font-size: 11px; font-weight: 400; color: rgba(28,27,77,0.65);
+      padding: 6px 0; border-bottom: 1px solid rgba(28,27,77,0.07);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .brochure-body ul li::before {
+      content: ''; display: block; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--orange); flex-shrink: 0;
+    }
+    .brochure-footer {
+      background: var(--cream); padding: 14px 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brochure-footer span {
+      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(28,27,77,0.4);
+    }
+    .brochure-pages { font-family: var(--serif); font-size: 14px; color: var(--navy); }
+
+    /* ── INDRØMMELSE (stål-blå) ── */
+    .indrommelse-band {
+      position: relative;
+      background: var(--steel); color: #fff; padding: 88px 80px;
+      overflow: hidden;
+    }
+    .indrommelse-band-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.18;
+    }
+    .indrommelse-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+    .indrommelse-band .tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 20px;
+    }
+    .indrommelse-band h2 {
+      font-family: var(--serif); font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300; line-height: 1.05; margin-bottom: 36px;
+    }
+    .indrommelse-band p {
+      font-size: 16px; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.88); margin-bottom: 20px;
+    }
+    .indrommelse-band strong { font-weight: 500; color: #fff; }
+
+    /* ── HVAD VI LEVERER (cream) ── */
+    .leverer-band { background: var(--cream); padding: 88px 80px; }
+    .leverer-inner { max-width: 1200px; margin: 0 auto; }
+    .leverer-inner { max-width: 1200px; margin: 0 auto; }
+    .leverer-band h2 {
+      font-family: var(--serif); font-size: clamp(28px, 3vw, 44px);
+      font-weight: 300; color: var(--navy); margin-bottom: 48px;
+    }
+    .leverer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .leverer-block { background: #fff; padding: 40px 44px; }
+    .leverer-num {
+      font-family: var(--serif); font-size: 11px; color: var(--orange);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .leverer-block h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; }
+    .leverer-block p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(28,27,77,0.8); margin-bottom: 12px; }
+    .leverer-block p:last-child { margin-bottom: 0; }
+
+    /* ── POSITION-BAND (orange-red) ── */
+    .position-band {
+      position: relative;
+      background: #C8820A; color: #fff; padding: 88px 80px;
+      overflow: hidden;
+    }
+    .position-band-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.22;
+    }
+    .position-inner { position: relative; z-index: 2; max-width: 520px; margin: 0; text-align: left; }
+    .position-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 20px;
+    }
+    .position-band h2 {
+      font-family: var(--serif); font-size: clamp(30px, 4vw, 52px);
+      font-weight: 300; line-height: 1.1; margin-bottom: 28px;
+    }
+    .position-band p {
+      font-size: 16px; font-weight: 300; line-height: 1.8; opacity: 0.88; margin-bottom: 16px;
+    }
+    .position-pyramid {
+      position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+      z-index: 1; opacity: 0.30; pointer-events: none; width: 420px;
+    }
+    @media (max-width: 900px) { .position-pyramid { display: none; } .position-inner { max-width: 100%; } }
+
+        /* ── PATRULJEN ── */
+    .team-section { background: var(--cream); padding: 80px 72px; }
+
+    .section-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300; color: var(--navy); margin-bottom: 56px;
+    }
+
+    .team-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+
+    .team-card {
+      display: grid; grid-template-columns: 180px 1fr;
+      background: transparent;
+    }
+
+    .team-photo {
+      width: 180px; height: 100%;
+      min-height: 220px;
+      object-fit: cover; object-position: center top; display: block;
+    }
+
+    .team-info {
+      background: var(--steel);
+      padding: 28px 28px 0;
+      display: flex; flex-direction: column;
+    }
+
+    .team-name {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff; margin-bottom: 6px;
+    }
+
+    .team-title {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85);
+      margin-bottom: 12px; line-height: 1.4;
+    }
+
+    .team-bio {
+      font-size: 13px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+      overflow: hidden; flex: 1;
+    }
+
+    .team-expand {
+      background: var(--navy); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      height: 40px; color: #fff;
+      font-size: 22px; line-height: 1;
+      margin: 16px -28px 0;
+      transition: background 0.2s;
+    }
+    .team-expand:hover { background: rgba(0,0,0,0.3); }
+
+    @media (max-width: 768px) {
+      .team-section { padding: 56px 28px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { grid-template-columns: 140px 1fr; }
+      .team-photo { width: 140px; min-height: 200px; }
+    }
+
+    @media (max-width: 480px) {
+      .team-card { grid-template-columns: 1fr; }
+      .team-photo { width: 100%; height: 260px; min-height: unset; }
+      .team-expand { margin: 16px 0 0; }
+    }
+
+    
+    /* ── FOOTER ── */
+    footer { background: #0e0d2e; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 40px; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ── MOBILE ── */
+    .mobile-nav { display: none; position: fixed; inset: 0; background: var(--navy); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: var(--serif); font-size: 32px; font-weight: 300; color: #fff; text-decoration: none; }
+    .mobile-nav-close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 28px; }
+
+    @media (max-width: 960px) {
+      .top-nav nav { display: none; }
+      .hamburger { display: block; }
+      .page-header { padding: 48px 32px 40px; }
+      .intro-wrap { grid-template-columns: 1fr; gap: 56px; padding: 56px 32px; }
+      .brochure-wrap { position: static; }
+      .indrommelse-band, .leverer-band, .position-band { padding: 56px 32px; }
+      .leverer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .intro-wrap, .leverer-band { padding: 40px 20px; }
+    }
+  
+    /* ── IDÉEN BAG ── */
+    .ideen-section {
+      background: var(--cream);
+      padding: 80px 40px;
+    }
+    .ideen-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .ideen-inner p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    
+    /* ── TILBAGE TIL TOPPEN ── */
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 999;
+      background: var(--navy); color: #fff;
+      border: none; border-radius: 50%;
+      width: 48px; height: 48px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 16px rgba(28,27,77,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { transform: translateY(-3px); background: var(--purple, #3D1A6B); }
+    #back-to-top svg { width: 20px; height: 20px; }
+
+    /* ── IPAD (≤768px) ── */
+    @media (max-width: 768px) {
+      .top-section { padding: 0 28px; }
+      .page-header { padding: 40px 28px 36px; }
+      .indrommelse-band, .leverer-band, .position-band { padding: 56px 28px; }
+      .ideen-section { padding: 56px 28px; }
+      .team-section { padding: 52px 28px; }
+      footer { padding: 20px 28px; }
+    }
+
+    /* ── MOBIL (≤480px) ── */
+    @media (max-width: 480px) {
+      .top-section { padding: 0 16px; }
+      .top-nav img { height: 52px !important; }
+      .page-header { padding: 28px 16px 24px; }
+      .page-title { font-size: 32px; }
+      .page-tagline { font-size: 14px; }
+      .indrommelse-band { padding: 40px 16px; }
+      .indrommelse-band h2 { font-size: 28px; }
+      .indrommelse-band p { font-size: 14px; }
+      .leverer-band { padding: 40px 16px; }
+      .leverer-block { padding: 28px 24px; }
+      .position-band { padding: 40px 16px; }
+      .position-band h2 { font-size: 26px; }
+      .position-band p { font-size: 14px; }
+      .ideen-section { padding: 40px 16px; }
+      .ideen-inner p { font-size: 14px; }
+      .team-section { padding: 36px 16px; }
+      .section-heading { margin-bottom: 32px; }
+      footer { padding: 18px 16px; font-size: 11px; }
+      #back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+      .mobile-nav a { font-size: 26px; }
+    }
+
+    /* ── LILLE MOBIL (≤375px) ── */
+    @media (max-width: 375px) {
+      .top-nav img { height: 40px !important; }
+      .page-title { font-size: 26px; }
+    }
+
+    </style>
+</head>
+<body>
+
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="document.getElementById('mobileNav').classList.remove('open')">✕</button>
+  <a href="index.html">Forside</a>
+  <a href="om-os.html">Om os</a>
+  <a href="index.html#kontakt">Kontakt</a>
+</nav>
+
+<div class="top-section">
+<div class="top-nav">
+  <a class="header-logo" href="index.html">
+    <img src="Foto/nyt-logo-crop.png" alt="Digitaliseringspatruljen" style="height:80px;width:auto">
+  </a>
+  <nav>
+    <a href="index.html">Forside</a>
+    <a href="om-os.html" class="active">Om os</a>
+      <a href="index.html#kontakt" class="header-cta">Kontakt</a>
+  </nav>
+  <button class="hamburger" onclick="document.getElementById('mobileNav').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</div><!-- /top-nav -->
+
+</div><!-- /top-section -->
+
+<!-- SIDETITEL på hvid baggrund -->
+<div class="page-header">
+  <p class="breadcrumb">Om os</p>
+  <h1 class="page-title">Om Digitaliseringspatruljen</h1>
+  <p class="page-tagline">Et nyt dansk initiativ med store ambitioner — og et klart mandat.</p>
+</div>
+
+<!-- INTRO + BROCHURE MOCKUP -->
+<div class="intro-wrap">
+  <div class="intro-left">
+    <h2><strong>Digitaliseringspatruljen</strong> leverer skræddersyet rådgivning, levende oplæg og praksisnære workshops inden for digitalisering og AI.</h2>
+
+    <p>Vores styrke ligger i vores brede, tværfaglige fundament og en fælles, specialiseret overbygning: Vi har alle studeret Anvendelsen af AI under it-uddannelsen hos IBA Erhvervsakademi.</p>
+
+
+    <p>Vi forstår udfordringerne på begge sider af skrivebordet — både hos borgeren, medarbejderen, læreren, den ledige og ledelsen.</p>
+  </div>
+
+  <!-- Brochure mockup -->
+  <div class="brochure-wrap">
+    <div class="brochure">
+      <div class="brochure-top">
+        <div class="brochure-logo-row">
+          <img src="data:image/png;base64,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" alt="logo" style="height:36px;width:auto;" onerror="this.style.display:'none'"/>
+          <div>
+            <span class="brochure-logo-text">Digitaliseringspatruljen</span>
+            <span class="brochure-logo-sub">Ansvarlig AI · Rådgivning</span>
+          </div>
+        </div>
+        <div class="brochure-color-bar">
+          <span style="background:var(--amber);"></span>
+          <span style="background:var(--orange);"></span>
+          <span style="background:var(--rust);"></span>
+          <span style="background:rgba(255,255,255,0.15);"></span>
+        </div>
+        <p class="brochure-title">EU AI Act i din hverdag</p>
+        <p class="brochure-subtitle">Workshop · Jobcentre</p>
+      </div>
+      <div class="brochure-body">
+        <span class="brochure-tag">Gratis materiale</span>
+        <p>Hvordan bruger vi AI ansvarligt i skolen? Et praksisnært kursusforløb til dig som lærer.</p>
+        <ul>
+          <li>Hvad er kunstig intelligens?</li>
+          <li>AI og digitalisering i dit daglige arbejde</li>
+          <li>Kritisk brug, bias og kildekritik</li>
+          <li>Etik og ansvarlig AI i praksis</li>
+        </ul>
+      </div>
+      <div class="brochure-footer">
+        <span>Digitaliseringspatruljen · 2026</span>
+        <span class="brochure-pages">12 s.</span>
+      </div>
+    </div>
+    <p style="font-size:11px;color:rgba(28,27,77,0.4);text-align:center;margin-top:16px;letter-spacing:0.06em;">Eksempel på undervisningsmateriale</p>
+  </div>
+</div>
+
+<!-- INDRØMMELSE -->
+<section class="indrommelse-band">
+  <div class="indrommelse-band-bg"></div>
+  <div class="indrommelse-inner">
+    <p class="tag">Vores ærlige indrømmelse</p>
+    <h2>Vi er overhovedet ikke eksperter!</h2>
+    <p>Lad os være helt ærlige, for det skylder vi jer: Hvis nogen i dag påstår, at de er 100% eksperter i AI, så passer det sandsynligvis ikke. Teknologien udvikler sig hurtigere, end det gennemsnitlige menneske kan nå at drikke sin morgenkaffe. Det er simpelthen biologisk umuligt for os mennesker at være så omstillingsparate, som digitaliseringen kræver af os. Vi taber pusten — og det er helt okay!</p>
+    <p><strong>Det er netop derfor, Digitaliseringspatruljen blev opfundet.</strong></p>
+    <p>Vi kalder os ikke traditionelle eksperter, fordi alt ændrer sig fra dag til dag. Men vi er <strong>"eksperter i nuet"</strong>. Vi bruger vores vågne timer på at holde os opdaterede, teste værktøjerne af og skille skidt fra kanel — så I ikke behøver at gøre det.</p>
+    <p>Vi hjælper jer med at navigere i den digitale storm uden at miste fodfæstet. Med plads til et smil, masser af humor og den sunde, menneskelige fornuft.</p>
+  </div>
+</section>
+
+<!-- HVAD VI LEVERER -->
+
+<!-- POSITION-BAND -->
+<section class="position-band">
+  <div class="position-band-bg"></div>
+  <div class="position-pyramid">
+    <svg viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg" width="420">
+      <!-- Titel -->
+      <text x="210" y="18" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="15" font-weight="700" letter-spacing="1">EU AI Act</text>
+      <text x="210" y="36" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="sans-serif" font-size="11" letter-spacing="0.5">AI-risikopyramiden</text>
+      <!-- Niveau 4 – top, rød -->
+      <rect x="130" y="48" width="160" height="54" rx="8" fill="#C0392B"/>
+      <text x="210" y="70" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="600">Ansigtsgenkendelse</text>
+      <text x="210" y="85" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="sans-serif" font-size="10">i offentlige rum</text>
+      <text x="210" y="98" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="700">FORBUDT 🚫</text>
+      <!-- Niveau 3 – orange -->
+      <rect x="85" y="114" width="250" height="54" rx="8" fill="#E67E22"/>
+      <text x="210" y="136" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="600">AI-CV-screening</text>
+      <text x="210" y="151" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="sans-serif" font-size="10">til jobansøgere</text>
+      <text x="210" y="164" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="700">STRENGE KRAV ⚠️</text>
+      <!-- Niveau 2 – gul -->
+      <rect x="40" y="180" width="340" height="54" rx="8" fill="#D4AC0D"/>
+      <text x="210" y="202" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="600">Kundeservice-chatbot</text>
+      <text x="210" y="230" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="700">GENNEMSIGTIGHED 👁</text>
+      <!-- Niveau 1 – bund, grøn -->
+      <rect x="0" y="246" width="420" height="54" rx="8" fill="#1E8449"/>
+      <text x="210" y="268" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="11" font-weight="600">Netflix-anbefalingsalgoritme</text>
+      <text x="210" y="296" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="10" font-weight="700">LAV RISIKO ✓</text>
+      <!-- Understreg -->
+      <line x1="0" y1="305" x2="420" y2="305" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <text x="210" y="310" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="sans-serif" font-size="9">Jo højere op · jo strengere krav</text>
+    </svg>
+  </div>
+  <div class="position-inner">
+    <p class="position-label">Vores tilgang</p>
+    <h2>Vi rykker ud. Vi oversætter. Vi efterlader orden.</h2>
+    <p>Digitaliseringspatruljens navn signalerer handlekraft og overblik. Vi er her for at gøre det håndterbart, konkret og forsvarligt.</p>
+    <p>Vores fire ringe er ikke tilfældige. De symboliserer de fire risikoniveauer i EU AI Act-pyramiden — fra det forbudte øverst til lav risiko nederst. Det er præcis det vi hjælper jer med at navigere i. Så I ved hvor I står.</p>
+    <p>Med smil, humor og den sunde menneskelige fornuft.</p>
+  </div>
+</section>
+
+<!-- ── PATRULJEN ── -->
+<section class="team-section" id="patruljen">
+  <p class="section-title">Mød patruljen</p>
+  <h2 class="section-heading">En patrulje af eksperter.</h2>
+
+  <div class="team-grid">
+
+    <!-- Anne Kjærgaard -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Anne Kjærgaard"/>
+      <div class="team-info">
+        <p class="team-name">Anne Kjærgaard</p>
+        <p class="team-title">Projektleder</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+    <!-- Mikkel Hansen -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1764084052338-23a317e34ea1?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Mikkel Hansen"/>
+      <div class="team-info">
+        <p class="team-name">Mikkel Hansen</p>
+        <p class="team-title">Rådgiver og underviser</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+    <!-- Jonas Petersen -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Jonas Petersen"/>
+      <div class="team-info">
+        <p class="team-name">Jonas Petersen</p>
+        <p class="team-title">Forretningsudvikler</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+    <!-- Søren Bjelke -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Lene Dalgaard"/>
+      <div class="team-info">
+        <p class="team-name">Lene Dalgaard</p>
+        <p class="team-title">Rådgiver og underviser</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+    <!-- Medlem 5 -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1642257859842-c95f9fa8121d?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Lars Andersen"/>
+      <div class="team-info">
+        <p class="team-name">Lars Andersen</p>
+        <p class="team-title">Rådgiver og underviser</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+    <!-- Medlem 6 -->
+    <div class="team-card">
+      <img class="team-photo"
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
+        alt="Helle Mortensen"/>
+      <div class="team-info">
+        <p class="team-name">Helle Mortensen</p>
+        <p class="team-title">Underviser og facilitator</p>
+        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
+        <button class="team-expand" title="Læs mere">+</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="ideen-section" id="ideen-bag">
+  <div class="ideen-inner">
+    <h2 class="section-heading">Idéen bag</h2>
+    <p><strong>Karina Maria Nyberg</strong> har levet det hun rådgiver om. Som sagsbehandler, underviser, skribent i Børsen Ledelse, selvstændig ledelsesrådgiver og HR-leder har hun siddet i begge ender af bordet — og set hvad der sker når mennesker og systemer ikke mødes ordentligt.</p>
+    <p>I 2025 satte hun kursen mod AI og digitalisering. Ikke som et modefænomen, men fordi hun er dybt overbevist om at teknologi aldrig må erstatte det menneskelige blik. At ingen — uanset alder, køn, baggrund eller hvad livet har budt på — bør lades udenfor arbejdsmarkedet fordi udviklingen går for stærkt.</p>
+    <p>Det er det Digitaliseringspatruljen er bygget på.</p>
+    <p>Derfor har hun særligt udvalgt hver enkelt i patruljen — mennesker med forskellig visdom og faglighed, men med én ting til fælles: de har alle prøvet modstand i arbejdslivet. Det er netop den erfaring der gør forskellen.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Digitaliseringspatruljen &nbsp;·&nbsp; <a href="index.html" style="color:inherit;text-decoration:none;">Tilbage til forsiden</a>
+</footer>
+
+
+<!-- Tilbage til toppen -->
+<button id="back-to-top" aria-label="Tilbage til toppen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+<script>
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+</body>
+</html>
