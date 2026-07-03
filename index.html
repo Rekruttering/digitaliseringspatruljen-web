@@ -93,11 +93,12 @@
       display: flex; align-items: flex-end;
     }
 
-    .hero-img {
+    .hero-slide {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&q=85&auto=format&fit=crop');
       background-size: cover; background-position: center 30%;
+      opacity: 0; transition: opacity 1.6s ease;
     }
+    .hero-slide.active { opacity: 1; }
 
     .hero-overlay {
       position: absolute; inset: 0;
@@ -108,6 +109,60 @@
       position: relative; z-index: 2;
       padding: 0 72px 72px;
       max-width: 900px;
+    }
+
+    /* ── HERO STATUS CARD ── */
+    .hero-card {
+      position: absolute;
+      top: 50%; right: 72px;
+      transform: translateY(-50%);
+      width: 290px;
+      background: var(--light);
+      border-radius: 14px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+      z-index: 3;
+    }
+    .hero-card-header {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--navy); opacity: 0.6; margin-bottom: 4px;
+    }
+    .hero-card-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .hero-card-org {
+      margin-left: auto; font-size: 12px; font-weight: 600; color: var(--navy);
+      opacity: 0.85; text-transform: none; letter-spacing: 0;
+    }
+    .hero-card-divider { height: 1px; background: rgba(28,27,77,0.1); margin: 12px 0 14px; }
+    .hero-card-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(28,27,77,0.45); margin-bottom: 10px;
+    }
+    .hero-card-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 400; color: var(--navy); padding: 6px 0;
+    }
+    .hero-card-tag { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .hero-card-tag.tag-minimal { background: var(--ring-green); }
+    .hero-card-tag.tag-begraenset { background: var(--ring-gold); }
+    .hero-card-tag.tag-hoej { background: var(--ring-orange); }
+    .hero-card-tag.tag-uacceptabel { background: var(--ring-red); }
+    .hero-card-status { background: var(--cream); border-radius: 8px; padding: 12px 14px; margin: 14px 0; }
+    .hero-card-status-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(28,27,77,0.5); margin-bottom: 4px;
+    }
+    .hero-card-status-value { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--navy); }
+    .hero-card-cta {
+      display: block; text-align: center; background: var(--navy); color: #fff;
+      padding: 11px; border-radius: 8px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hero-card-cta:hover { opacity: 0.85; }
+
+    @media (max-width: 1300px) {
+      .hero-card { display: none; }
     }
 
     .hero-tag {
@@ -755,13 +810,32 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-img"></div>
+  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&q=85&auto=format&fit=crop')"></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80&auto=format&fit=crop')"></div>
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80&auto=format&fit=crop')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-tag">Vi rådgiver og underviser kommuner, jobcentre og virksomheder</span>
     <h1 class="hero-title">
       Ansvarlig digitalisering og AI
     </h1>
+  </div>
+  <div class="hero-card">
+    <div class="hero-card-header">
+      <span class="hero-card-dot"></span> AI ACT-STATUS
+      <span class="hero-card-org">Jeres organisation</span>
+    </div>
+    <div class="hero-card-divider"></div>
+    <p class="hero-card-label">Risikoniveauer</p>
+    <div class="hero-card-row"><span class="hero-card-tag tag-minimal"></span>Minimal risiko</div>
+    <div class="hero-card-row"><span class="hero-card-tag tag-begraenset"></span>Begrænset risiko</div>
+    <div class="hero-card-row"><span class="hero-card-tag tag-hoej"></span>Høj risiko</div>
+    <div class="hero-card-row"><span class="hero-card-tag tag-uacceptabel"></span>Uacceptabel risiko</div>
+    <div class="hero-card-status">
+      <p class="hero-card-status-label">Beskæftigelsesreform 2026</p>
+      <p class="hero-card-status-value" id="reformCountdown">— dage til fuld indfasning</p>
+    </div>
+    <a href="#kontakt" class="hero-card-cta">Book en kortlægning →</a>
   </div>
 </section>
 
@@ -1019,6 +1093,25 @@
     this.style.display = 'none';
     document.getElementById('formOk').style.display = 'block';
   });
+
+  // ── HERO BILLEDSKIFT ──
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  if (heroSlides.length > 1) {
+    let heroIdx = 0;
+    setInterval(() => {
+      heroSlides[heroIdx].classList.remove('active');
+      heroIdx = (heroIdx + 1) % heroSlides.length;
+      heroSlides[heroIdx].classList.add('active');
+    }, 6000);
+  }
+
+  // ── REFORM-NEDTÆLLING ──
+  const reformEl = document.getElementById('reformCountdown');
+  if (reformEl) {
+    const deadline = new Date('2027-01-31T00:00:00');
+    const daysLeft = Math.max(0, Math.ceil((deadline - new Date()) / (1000 * 60 * 60 * 24)));
+    reformEl.textContent = daysLeft + ' dage til fuld indfasning';
+  }
 </script>
 
 <!-- Tilbage til toppen -->
