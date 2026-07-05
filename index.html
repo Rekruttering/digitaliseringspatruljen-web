@@ -9,7 +9,7 @@
   <script>
     /* Cache-bust: force reload if browser served stale version — v20260705n */
     (function() {
-      var key = 'dp_v', ver = '20260705o';
+      var key = 'dp_v', ver = '20260705p';
       if (sessionStorage.getItem(key) !== ver) {
         sessionStorage.setItem(key, ver);
         location.reload(true);
@@ -569,33 +569,61 @@
       color: rgba(28,27,77,0.8); max-width: 720px; margin-bottom: 44px;
     }
     .patrulje-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
     }
-    .patrulje-card { text-align: center; }
+    .patrulje-card {
+      text-align: left; background: var(--cream); border-radius: 18px;
+      overflow: hidden; border: 1px solid rgba(28,27,77,0.07);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .patrulje-card:hover { box-shadow: 0 18px 40px rgba(28,27,77,0.12); transform: translateY(-3px); }
     .patrulje-card .patrulje-photo-wrap {
-      width: 100%; aspect-ratio: 1 / 1; border-radius: 50%;
-      overflow: hidden; margin-bottom: 14px; background: var(--cream);
+      width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--navy);
     }
     .patrulje-card img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: 50% 12%; transform: scale(1.42);
-      display: block; filter: grayscale(12%);
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(25%) contrast(1.03);
     }
-    .patrulje-card p {
-      font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em;
-      color: var(--navy);
+    .patrulje-card-body { padding: 22px 24px 24px; }
+    .patrulje-name {
+      font-family: var(--serif); font-size: 19px; font-weight: 500;
+      color: var(--navy); margin-bottom: 3px;
     }
-    .patrulje-card p.patrulje-role {
-      font-size: 11px; font-weight: 400; letter-spacing: 0.02em;
-      color: rgba(28,27,77,0.6); margin-top: 2px;
+    .patrulje-role {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--olive); margin-bottom: 14px;
     }
+    .patrulje-desc {
+      font-size: 13.5px; font-weight: 400; line-height: 1.7;
+      color: rgba(28,27,77,0.78); margin-bottom: 0;
+    }
+    .patrulje-readmore {
+      display: flex; align-items: center; gap: 8px; margin-top: 16px;
+      font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--navy); transition: gap 0.2s ease;
+      background: none; border: none; padding: 0; cursor: pointer;
+    }
+    .patrulje-readmore:hover { gap: 12px; }
+    .patrulje-readmore .arrow-circle {
+      width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+      transition: transform 0.25s ease;
+    }
+    .patrulje-readmore.open .arrow-circle { transform: rotate(90deg); }
+    .patrulje-bio-detail {
+      display: none; margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid rgba(28,27,77,0.1);
+      font-size: 13.5px; font-weight: 400; line-height: 1.7;
+      color: rgba(28,27,77,0.78);
+    }
+    .patrulje-bio-detail.open { display: block; }
     @media (max-width: 900px) {
       .patrulje-section { padding: 56px 32px; }
-      .patrulje-grid { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
+      .patrulje-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 560px) {
       .patrulje-section { padding: 40px 16px; }
-      .patrulje-grid { grid-template-columns: repeat(2, 1fr); }
+      .patrulje-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -1203,33 +1231,105 @@
   <div class="patrulje-inner">
     <p class="patrulje-tag">Patruljen</p>
     <h2 class="patrulje-heading">Bredden bag rådgivningen.</h2>
-    <p class="patrulje-intro">Digitaliseringspatruljen trækker på kompetencer inden for teknologi, forvaltning, beskæftigelse, undervisning, jura, HR, kommunikation og data — den kombination er fundamentet for vores rådgivning.</p>
+    <p class="patrulje-intro">Digitaliseringspatruljen trækker på tilknyttede rådgivere og undervisere med forskellig faglig baggrund — teknologi, forvaltning, beskæftigelse, undervisning, jura, kommunikation og data. Den kombination er fundamentet for vores rådgivning.</p>
     <div class="patrulje-grid">
+
       <div class="patrulje-card">
-        <div class="patrulje-photo-wrap"><img src="Foto/karina_rect.jpg" alt="Karina Maria Nyberg"></div>
-        <p>Karina Maria</p>
-        <p class="patrulje-role">Stifter</p>
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Mette Falk"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Mette Falk</p>
+          <p class="patrulje-role">EU AI Act &amp; compliance</p>
+          <p class="patrulje-desc">Rådgiver med fokus på risikoklassificering og de forpligtelser, EU's AI-forordning stiller til myndigheder og virksomheder.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Arbejder med at oversætte lovtekst til konkrete tjeklister og governance-processer, som organisationer reelt kan arbejde efter i hverdagen.</p>
+          </div>
+        </div>
       </div>
+
       <div class="patrulje-card">
-        <div class="patrulje-photo-wrap"><img src="Foto/Kjartan nyeste.png" alt="Kjartan"></div>
-        <p>Kjartan</p>
-        <p class="patrulje-role">&nbsp;</p>
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Thomas Vium"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Thomas Vium</p>
+          <p class="patrulje-role">Digitalisering, kommuner &amp; jobcentre</p>
+          <p class="patrulje-desc">Rådgiver kommuner og jobcentre i at organisere beskæftigelsesindsatsen digitalt i kølvandet på beskæftigelsesreformen 2026.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Har tidligere arbejdet med it-understøttet sagsbehandling i den offentlige sektor og kender driften indefra.</p>
+          </div>
+        </div>
       </div>
+
       <div class="patrulje-card">
-        <div class="patrulje-photo-wrap"><img src="Foto/Kurt nyeste.png" alt="Kurt"></div>
-        <p>Kurt</p>
-        <p class="patrulje-role">&nbsp;</p>
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Sofie Braad"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Sofie Braad</p>
+          <p class="patrulje-role">Underviser &amp; workshopfacilitator</p>
+          <p class="patrulje-desc">Planlægger og afholder workshops i AI-værktøjer og digitalisering — med fokus på at gøre det konkret og brugbart samme dag.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Baggrund som underviser i voksenpædagogik, med speciale i at gøre teknisk stof tilgængeligt for ikke-tekniske medarbejdere.</p>
+          </div>
+        </div>
       </div>
+
       <div class="patrulje-card">
-        <div class="patrulje-photo-wrap"><img src="Foto/Mathias.jpeg" alt="Mathias"></div>
-        <p>Mathias</p>
-        <p class="patrulje-role">&nbsp;</p>
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Anders Lindqvist"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Anders Lindqvist</p>
+          <p class="patrulje-role">A-kasser &amp; beskæftigelse</p>
+          <p class="patrulje-desc">Rådgiver a-kasser om det udvidede ansvar for dagpengemodtagere de første fire måneder, og hvordan digitalisering kan understøtte det.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Kommer fra en baggrund i a-kasse-regi og kender samspillet mellem medlemsservice, lovkrav og it-systemer.</p>
+          </div>
+        </div>
       </div>
+
       <div class="patrulje-card">
-        <div class="patrulje-photo-wrap"><img src="Foto/Rico nyt.png" alt="Rico"></div>
-        <p>Rico</p>
-        <p class="patrulje-role">&nbsp;</p>
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Camilla Skov"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Camilla Skov</p>
+          <p class="patrulje-role">Kommunikation &amp; forandring</p>
+          <p class="patrulje-desc">Hjælper organisationer med at kommunikere digitaliseringsforandringer, så medarbejdere forstår hvorfor — ikke kun hvordan.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Baggrund inden for intern kommunikation og forandringsledelse i større organisationer.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="patrulje-card">
+        <div class="patrulje-photo-wrap"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80&auto=format&fit=crop&crop=faces" alt="Peter Holm"></div>
+        <div class="patrulje-card-body">
+          <p class="patrulje-name">Peter Holm</p>
+          <p class="patrulje-role">Data, proces &amp; systemer</p>
+          <p class="patrulje-desc">Kortlægger arbejdsgange og datastrømme, så AI-løsninger bygges oven på en proces der reelt hænger sammen.</p>
+          <button type="button" class="patrulje-readmore" onclick="toggleReadMore(this)">
+            <span class="arrow-circle"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            Læs mere
+          </button>
+          <div class="patrulje-bio-detail">
+            <p>Arbejder til daglig med systemintegration og procesoptimering i offentlige og private organisationer.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1387,6 +1487,12 @@
 
   // ── HVAD DREJER DET SIG OM (fold ud) ──
   function toggleChoiceList(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+
+  // ── PATRULJE-KORT (læs mere) ──
+  function toggleReadMore(btn) {
     btn.classList.toggle('open');
     btn.nextElementSibling.classList.toggle('open');
   }
