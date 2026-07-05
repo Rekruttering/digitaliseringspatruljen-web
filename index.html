@@ -9,7 +9,7 @@
   <script>
     /* Cache-bust: force reload if browser served stale version — v20260705n */
     (function() {
-      var key = 'dp_v', ver = '20260705n';
+      var key = 'dp_v', ver = '20260705o';
       if (sessionStorage.getItem(key) !== ver) {
         sessionStorage.setItem(key, ver);
         location.reload(true);
@@ -569,24 +569,33 @@
       color: rgba(28,27,77,0.8); max-width: 720px; margin-bottom: 44px;
     }
     .patrulje-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
     }
     .patrulje-card { text-align: center; }
+    .patrulje-card .patrulje-photo-wrap {
+      width: 100%; aspect-ratio: 1 / 1; border-radius: 50%;
+      overflow: hidden; margin-bottom: 14px; background: var(--cream);
+    }
     .patrulje-card img {
-      width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
-      border-radius: 50%; display: block; margin-bottom: 14px;
-      filter: grayscale(15%);
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: 50% 12%; transform: scale(1.42);
+      display: block; filter: grayscale(12%);
     }
     .patrulje-card p {
       font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em;
       color: var(--navy);
     }
+    .patrulje-card p.patrulje-role {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.02em;
+      color: rgba(28,27,77,0.6); margin-top: 2px;
+    }
     @media (max-width: 900px) {
       .patrulje-section { padding: 56px 32px; }
-      .patrulje-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+      .patrulje-grid { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
     }
     @media (max-width: 480px) {
       .patrulje-section { padding: 40px 16px; }
+      .patrulje-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -1197,36 +1206,29 @@
     <p class="patrulje-intro">Digitaliseringspatruljen trækker på kompetencer inden for teknologi, forvaltning, beskæftigelse, undervisning, jura, HR, kommunikation og data — den kombination er fundamentet for vores rådgivning.</p>
     <div class="patrulje-grid">
       <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80&auto=format&fit=crop" alt="Teknologi">
-        <p>Teknologi</p>
+        <div class="patrulje-photo-wrap"><img src="Foto/karina_rect.jpg" alt="Karina Maria Nyberg"></div>
+        <p>Karina Maria</p>
+        <p class="patrulje-role">Stifter</p>
       </div>
       <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format&fit=crop" alt="Forvaltning">
-        <p>Forvaltning</p>
+        <div class="patrulje-photo-wrap"><img src="Foto/Kjartan nyeste.png" alt="Kjartan"></div>
+        <p>Kjartan</p>
+        <p class="patrulje-role">&nbsp;</p>
       </div>
       <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80&auto=format&fit=crop" alt="Beskæftigelse">
-        <p>Beskæftigelse</p>
+        <div class="patrulje-photo-wrap"><img src="Foto/Kurt nyeste.png" alt="Kurt"></div>
+        <p>Kurt</p>
+        <p class="patrulje-role">&nbsp;</p>
       </div>
       <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80&auto=format&fit=crop" alt="Undervisning">
-        <p>Undervisning</p>
+        <div class="patrulje-photo-wrap"><img src="Foto/Mathias.jpeg" alt="Mathias"></div>
+        <p>Mathias</p>
+        <p class="patrulje-role">&nbsp;</p>
       </div>
       <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80&auto=format&fit=crop" alt="Jura &amp; compliance">
-        <p>Jura &amp; compliance</p>
-      </div>
-      <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=400&q=80&auto=format&fit=crop" alt="HR &amp; ledelse">
-        <p>HR &amp; ledelse</p>
-      </div>
-      <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format&fit=crop&sat=-100" alt="Kommunikation">
-        <p>Kommunikation</p>
-      </div>
-      <div class="patrulje-card">
-        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&q=80&auto=format&fit=crop" alt="Data &amp; analyse">
-        <p>Data &amp; analyse</p>
+        <div class="patrulje-photo-wrap"><img src="Foto/Rico nyt.png" alt="Rico"></div>
+        <p>Rico</p>
+        <p class="patrulje-role">&nbsp;</p>
       </div>
     </div>
   </div>
