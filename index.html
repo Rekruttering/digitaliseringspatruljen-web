@@ -7,9 +7,9 @@
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
   <script>
-    /* Cache-bust: force reload if browser served stale version — v20260629b */
+    /* Cache-bust: force reload if browser served stale version — v20260705n */
     (function() {
-      var key = 'dp_v', ver = '20260629b';
+      var key = 'dp_v', ver = '20260705n';
       if (sessionStorage.getItem(key) !== ver) {
         sessionStorage.setItem(key, ver);
         location.reload(true);
@@ -88,7 +88,7 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      height: 60vh; min-height: 400px;
+      height: 88vh; min-height: 620px;
       overflow: hidden;
       display: flex; align-items: flex-end;
     }
@@ -114,8 +114,7 @@
     /* ── HERO STATUS CARD ── */
     .hero-card {
       position: absolute;
-      top: 50%; right: 72px;
-      transform: translateY(-50%);
+      bottom: 56px; right: 72px;
       width: 290px;
       background: var(--light);
       border-radius: 14px;
@@ -169,6 +168,31 @@
       .hero-card-row { font-size: 12px; }
     }
 
+    /* ── HERO QUOTE (skifter med billedet) ── */
+    .hero-quote {
+      position: absolute; top: 64px; left: 52%;
+      max-width: 340px; z-index: 3;
+      padding-left: 16px; border-left: 2px solid var(--gold);
+      transition: opacity 0.5s ease;
+    }
+    .hero-quote-text {
+      font-family: var(--serif); font-style: italic; font-weight: 600;
+      font-size: 23px; line-height: 1.4; color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    }
+    .hero-quote-name {
+      font-family: var(--sans); font-style: normal; font-weight: 600;
+      font-size: 13px; letter-spacing: 0.02em; margin-top: 10px;
+      transition: opacity 0.4s ease;
+    }
+    @media (max-width: 1300px) {
+      .hero-quote { left: 46%; max-width: 260px; }
+      .hero-quote-text { font-size: 16px; }
+    }
+    @media (max-width: 1050px) {
+      .hero-quote { display: none; }
+    }
+
     .hero-tag {
       display: inline-block;
       background: var(--gold); color: #fff;
@@ -176,16 +200,31 @@
       text-transform: uppercase; padding: 5px 14px; margin-bottom: 20px;
     }
 
-    .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(44px, 6vw, 86px);
-      font-weight: 300; line-height: 1.05;
-      color: #fff; margin-bottom: 8px;
+    .hero-motto {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: clamp(16px, 1.7vw, 21px); color: var(--gold);
+      margin-bottom: 16px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .hero-title strong {
-      font-weight: 600; display: block;
-      font-size: clamp(52px, 7vw, 100px);
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.6vw, 62px);
+      font-weight: 300; line-height: 1.15;
+      color: #fff; margin-bottom: 8px; max-width: 780px;
+    }
+
+    .hero-audience {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+    }
+    .hero-audience span {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+      color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.03em;
+      padding: 7px 16px; border-radius: 20px;
+    }
+
+    .hero-name {
+      color: var(--gold) !important;
+      transition: opacity 0.4s ease;
     }
 
     /* ── TICKER ── */
@@ -236,13 +275,25 @@
       margin: 0 auto;
     }
 
+    .intro-band-tag {
+      position: absolute; top: 24px; left: 32px; z-index: 2;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.8);
+      text-align: left;
+      line-height: 1.25;
+      max-width: 220px;
+    }
+    @media (max-width: 700px) {
+      .intro-band-tag { display: none; }
+    }
+
     .intro-band h2 {
       font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
       font-weight: 300; line-height: 1.2; margin-bottom: 24px;
     }
 
     .intro-band p {
-      font-size: 16px; font-weight: 300; line-height: 1.8;
+      font-size: 16px; font-weight: 400; line-height: 1.8;
       max-width: 700px; opacity: 0.92;
     }
 
@@ -262,7 +313,7 @@
       text-transform: uppercase; color: var(--navy); margin-bottom: 20px;
     }
 
-    .col-left p { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--navy); margin-bottom: 14px; }
+    .col-left p { font-size: 15px; font-weight: 400; line-height: 1.8; color: var(--navy); margin-bottom: 14px; }
 
     .col-right h3 {
       font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
@@ -272,7 +323,7 @@
     .checklist { list-style: none; }
     .checklist li {
       display: flex; gap: 14px; align-items: flex-start;
-      font-size: 14px; font-weight: 300; line-height: 1.6;
+      font-size: 14px; font-weight: 400; line-height: 1.6;
       color: var(--navy); padding: 10px 0;
       border-bottom: 1px solid rgba(28,27,77,0.08);
     }
@@ -292,25 +343,24 @@
     }
     .persona-card {
       border: 1.5px solid rgba(28,27,77,0.1);
-      border-radius: 12px; padding: 28px 22px;
-      background: #fff;
+      border-radius: 12px; padding: 0;
+      background: #fff; overflow: hidden;
       transition: box-shadow 0.2s, transform 0.2s;
     }
     .persona-card:hover {
       box-shadow: 0 8px 28px rgba(28,27,77,0.1);
       transform: translateY(-3px);
     }
-    .persona-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 16px;
+    .persona-photo {
+      width: 100%; height: 150px; object-fit: cover; display: block;
     }
+    .persona-card-body { padding: 22px 22px 26px; }
     .persona-card h4 {
-      font-size: 14px; font-weight: 600; color: var(--navy);
+      font-size: 15px; font-weight: 700; color: var(--navy);
       margin-bottom: 10px; line-height: 1.35;
     }
     .persona-card p {
-      font-size: 13px; font-weight: 300; color: rgba(28,27,77,0.7);
+      font-size: 14px; font-weight: 400; color: rgba(28,27,77,0.88);
       line-height: 1.7;
     }
     .kan-du-boks {
@@ -361,7 +411,7 @@
       font-weight: 300; line-height: 1.15; margin-bottom: 24px;
     }
 
-    .forloeb-left p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.85; }
+    .forloeb-left p { font-size: 15px; font-weight: 400; line-height: 1.8; opacity: 0.85; }
 
     .forloeb-right {
       background: rgba(255,255,255,0.07);
@@ -435,7 +485,7 @@
 
     .accordion-body {
       display: none; padding: 0 0 18px;
-      font-size: 13px; font-weight: 300; line-height: 1.75;
+      font-size: 13px; font-weight: 400; line-height: 1.75;
       color: rgba(255,255,255,0.75);
     }
 
@@ -487,7 +537,7 @@
     }
 
     .team-bio {
-      font-size: 13px; font-weight: 300; line-height: 1.7;
+      font-size: 13px; font-weight: 400; line-height: 1.7;
       color: rgba(255,255,255,0.8);
       display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
       overflow: hidden; flex: 1;
@@ -503,6 +553,42 @@
     }
     .team-expand:hover { background: rgba(0,0,0,0.3); }
 
+    /* ── PATRULJEN (billeder) ── */
+    .patrulje-section { background: #fff; padding: 72px 72px 88px; }
+    .patrulje-inner { max-width: 1180px; margin: 0 auto; }
+    .patrulje-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--olive); margin-bottom: 16px;
+    }
+    .patrulje-heading {
+      font-family: var(--serif); font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 300; color: var(--navy); margin-bottom: 18px; line-height: 1.15;
+    }
+    .patrulje-intro {
+      font-size: 15px; font-weight: 400; line-height: 1.8;
+      color: rgba(28,27,77,0.8); max-width: 720px; margin-bottom: 44px;
+    }
+    .patrulje-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .patrulje-card { text-align: center; }
+    .patrulje-card img {
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+      border-radius: 50%; display: block; margin-bottom: 14px;
+      filter: grayscale(15%);
+    }
+    .patrulje-card p {
+      font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--navy);
+    }
+    @media (max-width: 900px) {
+      .patrulje-section { padding: 56px 32px; }
+      .patrulje-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+    }
+    @media (max-width: 480px) {
+      .patrulje-section { padding: 40px 16px; }
+    }
+
     @media (max-width: 768px) {
       .team-section { padding: 56px 28px; }
       .team-grid { grid-template-columns: 1fr; }
@@ -517,36 +603,132 @@
     }
 
     
-    /* ── KONTAKT ── */
-    .kontakt-section {
-      background: var(--cream); color: var(--navy); padding: 56px 72px;
+    /* ── KONTAKT MODAL ── */
+    .kontakt-modal {
+      position: fixed; inset: 0; z-index: 300;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .kontakt-modal.open { display: flex; }
+    .kontakt-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(8,8,26,0.74);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .kontakt-modal.open .kontakt-modal-backdrop { opacity: 1; }
+
+    .kontakt-modal-panel-wrap {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 980px;
+      transform: translateY(28px) scale(0.97); opacity: 0;
+      transition: transform 0.4s cubic-bezier(.2,.9,.2,1), opacity 0.35s ease;
+    }
+    .kontakt-modal.open .kontakt-modal-panel-wrap { transform: translateY(0) scale(1); opacity: 1; }
+
+    .kontakt-modal-panel {
+      max-height: 90vh; overflow-y: auto;
+      background: #fff; border-radius: 20px;
+      box-shadow: 0 40px 110px rgba(0,0,0,0.45);
+      display: grid; grid-template-columns: 1fr 1.15fr;
     }
 
-    .kontakt-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    .kontakt-modal-close {
+      position: absolute; top: -16px; right: -16px; z-index: 5;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #fff; border: 1px solid rgba(28,27,77,0.1);
+      color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      transition: background 0.2s, transform 0.2s;
     }
-    .kontakt-left, .kontakt-right { min-width: 0; }
-
-    .kontakt-left h2 {
-      font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
-      font-weight: 300; margin-bottom: 24px;
+    .kontakt-modal-close:hover { background: var(--cream); transform: rotate(90deg); }
+    @media (max-width: 480px) {
+      .kontakt-modal-close { top: 10px; right: 10px; background: rgba(28,27,77,0.85); color: #fff; border: none; }
     }
 
-    .kontakt-left p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: 0.85; }
-
-    .kontakt-right {
-      background: #fff;
-      border-radius: 20px;
-      padding: 48px 44px 40px;
-      box-shadow: 0 24px 64px rgba(28,27,77,0.10), 0 2px 8px rgba(28,27,77,0.04);
-      border: 1px solid rgba(28,27,77,0.06);
-      position: relative;
-      overflow: hidden;
+    /* Venstre panel — mørk, "AI-agtig" */
+    .kontakt-modal-left {
+      position: relative; background: var(--navy); color: #fff;
+      padding: 52px 40px; overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    .kontakt-right::before {
+    .kontakt-modal-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: radial-gradient(rgba(184,150,12,0.4) 1px, transparent 1px);
+      background-size: 22px 22px;
+      -webkit-mask-image: radial-gradient(ellipse at 30% 20%, #000 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 30% 20%, #000 0%, transparent 75%);
+      animation: kontakt-grid-pan 24s linear infinite;
+    }
+    @keyframes kontakt-grid-pan {
+      0%   { background-position: 0 0; }
+      100% { background-position: 220px 220px; }
+    }
+    .kontakt-modal-flow { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; opacity: 0.6; }
+    .kontakt-modal-flow path { stroke-dasharray: 5 7; animation: kontakt-flow-dash 6s linear infinite; }
+    @keyframes kontakt-flow-dash { to { stroke-dashoffset: -120; } }
+
+    .kontakt-modal-tag {
+      position: relative; z-index: 1;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .kontakt-modal-left h2 {
+      position: relative; z-index: 1;
+      font-family: var(--serif); font-size: clamp(26px, 2.6vw, 36px); font-weight: 300;
+      line-height: 1.18; margin-bottom: 16px;
+    }
+    .kontakt-modal-left > p {
+      position: relative; z-index: 1;
+      font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.72);
+      max-width: 340px; margin-bottom: 36px;
+    }
+    .kontakt-status-list { position: relative; z-index: 1; margin-top: auto; }
+    .kontakt-status-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 0; border-top: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--sans); font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85);
+    }
+    .kontakt-status-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .kontakt-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px currentColor; }
+    .kontakt-status-row .mono { margin-left: auto; font-family: 'SF Mono', monospace; font-size: 12px; color: var(--gold); letter-spacing: 0.02em; }
+
+    .kontakt-modal-brochure {
+      position: relative; z-index: 1; margin-top: 24px;
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px; padding: 14px 16px;
+    }
+    .kmb-icon {
+      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(184,150,12,0.18); color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .kmb-title { font-size: 12.5px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .kmb-sub { font-size: 11px; color: rgba(255,255,255,0.55); }
+
+    /* Højre panel — form */
+    .kontakt-modal-right {
+      background: #fff; padding: 52px 44px 44px;
+      position: relative; overflow: hidden;
+    }
+    .kontakt-modal-right::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 5px;
       background: linear-gradient(90deg, var(--ring-red), var(--ring-orange), var(--ring-gold), var(--ring-green));
+    }
+    .kontakt-modal-right h3 {
+      font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .kontakt-modal-panel { grid-template-columns: 1fr; max-height: 92vh; }
+      .kontakt-modal-left { padding: 40px 28px; }
+      .kontakt-modal-right { padding: 40px 28px 32px; }
+    }
+    @media (max-width: 480px) {
+      .kontakt-modal { padding: 0; }
+      .kontakt-modal-panel { border-radius: 0; max-height: 100vh; height: 100vh; }
     }
 
     .kontakt-video-block {
@@ -621,11 +803,30 @@
 
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
 
-    .choice-list { margin-top: 12px; }
+    .choice-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      background: var(--cream); border: 1.5px solid rgba(28,27,77,0.12);
+      border-radius: 9px; padding: 13px 15px; cursor: pointer;
+      font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--navy); transition: border-color 0.2s;
+    }
+    .choice-toggle:hover { border-color: rgba(28,27,77,0.25); }
+    .choice-toggle:focus {
+      outline: none; border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(184,150,12,0.12);
+    }
+    .choice-toggle-arrow {
+      width: 22px; height: 22px; border-radius: 50%; background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .choice-toggle.open .choice-toggle-arrow { transform: rotate(90deg); }
+    .choice-list { display: none; margin-top: 12px; }
+    .choice-list.open { display: block; }
     .choice-row {
       display: flex; align-items: center; gap: 14px;
       padding: 9px 0; border-bottom: 1px solid rgba(28,27,77,0.08);
-      cursor: pointer; font-size: 14px; font-weight: 300;
+      cursor: pointer; font-size: 14px; font-weight: 400;
       color: rgba(28,27,77,0.75); text-transform: none; letter-spacing: 0;
       transition: color 0.2s;
     }
@@ -699,8 +900,6 @@
       object-fit: cover; object-position: center top; display: block;
       filter: grayscale(10%);
     }
-      .kontakt-section { padding: 56px 28px; }
-      .kontakt-inner { grid-template-columns: 1fr; gap: 48px; }
     }
 
     @media (max-width: 560px) {
@@ -733,7 +932,7 @@
     /* ── AUDIENCE LIST ── */
     .audience-list { list-style: none; margin-top: 8px; }
     .audience-list li {
-      font-size: 14px; font-weight: 300; line-height: 1.65;
+      font-size: 14px; font-weight: 400; line-height: 1.65;
       color: var(--navy); padding: 10px 0 10px 22px;
       border-bottom: 1px solid rgba(28,27,77,0.08);
       position: relative;
@@ -751,7 +950,6 @@
       .white-section { padding: 52px 28px; }
       .forloeb-left { padding: 52px 28px 36px; }
       .forloeb-right { padding: 36px 28px 52px; }
-      .kontakt-section { padding: 52px 28px; }
       footer { padding: 20px 28px; }
     }
 
@@ -771,8 +969,6 @@
       .forloeb-right { padding: 28px 16px 36px; }
       .team-section { padding: 36px 16px; }
       .section-heading { margin-bottom: 36px; }
-      .kontakt-section { padding: 36px 16px; }
-      .kontakt-right { padding: 32px 24px 28px; border-radius: 16px; }
       .form-row-2 { grid-template-columns: 1fr; gap: 0; }
       footer { padding: 18px 16px; font-size: 11px; }
       #back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
@@ -793,6 +989,7 @@
 <nav class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" id="mobileClose">✕</button>
   <a href="om-os.html" onclick="closeMobileNav()">Om os</a>
+  <a href="eu-ai-act.html" onclick="closeMobileNav()">EU AI Act</a>
   <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
 </nav>
 
@@ -804,6 +1001,7 @@
 
   <nav>
     <a href="om-os.html">Om os</a>
+    <a href="eu-ai-act.html">EU AI Act</a>
     <a href="#kontakt" class="header-cta">Kontakt</a>
   </nav>
 
@@ -814,13 +1012,21 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&q=90&auto=format&fit=crop')"></div>
+  <div class="hero-slide active" data-name="Peter" data-quote="Vi har aldrig kortlagt, hvor vi bruger AI." style="background-image:url('https://images.unsplash.com/photo-1622675363311-3e1904dc1885?w=1920&q=90&auto=format&fit=crop')"></div>
+  <div class="hero-slide" data-name="Maria" data-quote="Vi ansætter med AI-værktøjer. Ingen har set på compliance." style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=90&auto=format&fit=crop')"></div>
+  <div class="hero-slide" data-name="Ulrik" data-quote="Reglerne ændrer sig hurtigere end vores kurser." style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=90&auto=format&fit=crop')"></div>
+  <div class="hero-slide" data-name="Mathilde" data-quote="Jeg bruger AI hver dag. Ingen har lært mig hvordan." style="background-image:url('https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?w=1920&q=90&auto=format&fit=crop')"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-quote" id="heroQuote">
+    <p class="hero-quote-text">"Vi har aldrig kortlagt, hvor vi bruger AI."</p>
+    <p class="hero-quote-name">— <strong id="heroName" class="hero-name">Peter</strong></p>
+  </div>
   <div class="hero-content">
-    <span class="hero-tag">Vi rådgiver og underviser kommuner, jobcentre og virksomheder</span>
-    <h1 class="hero-title">
-      Ansvarlig digitalisering og AI
-    </h1>
+    <p class="hero-motto">"Ansvarlig digitalisering og AI"</p>
+    <h1 class="hero-title">Rådgivning og undervisning i ansvarlig AI og digitalisering</h1>
+    <div class="hero-audience">
+      <span>Kommuner</span><span>Jobcentre</span><span>A-kasser</span><span>Virksomheder</span>
+    </div>
   </div>
   <div class="hero-card">
     <div class="hero-card-header">
@@ -841,35 +1047,12 @@
   </div>
 </section>
 
-<!-- ── TICKER ── -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <!-- Første sæt -->
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver kommuner om ansvarlig digitalisering og AI i sagsbehandling</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi holder foredrag for offentlige ledere og beslutningstagere</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi oversætter EU AI Act til konkret praksis for din organisation</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi hjælper jobcentre med at navigere beskæftigelsesreformen 2026</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi underviser medarbejdere i ansvarlig digitalisering og AI</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi kortlægger risici og udarbejder handleplaner for digitalisering og AI</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver virksomheder om digitalisering, AI-regulering og compliance</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi er et kollektiv af eksperter med rod i jura, teknologi og forvaltning</span>
-    <!-- Duplikeret sæt for seamless loop -->
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver kommuner om ansvarlig digitalisering og AI i sagsbehandling</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi holder foredrag for offentlige ledere og beslutningstagere</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi oversætter EU AI Act til konkret praksis for din organisation</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi hjælper jobcentre med at navigere beskæftigelsesreformen 2026</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi underviser medarbejdere i ansvarlig digitalisering og AI</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi kortlægger risici og udarbejder handleplaner for digitalisering og AI</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi rådgiver virksomheder om digitalisering, AI-regulering og compliance</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Vi er et kollektiv af eksperter med rod i jura, teknologi og forvaltning</span>
-  </div>
-</div>
-
 <!-- ── INTRO BAND ── -->
 <section class="intro-band" id="om-os">
   <div class="intro-band-bg"></div>
+  <p class="intro-band-tag">Et nyt dansk initiativ<br>med store ambitioner<br>— og et klart mandat.</p>
   <div class="intro-band-inner">
-    <h2>– Vi møder mennesker og organisationer der hvor de er</h2>
+    <h2>Digitaliseringspatruljen møder mennesker og organisationer der hvor de er.</h2>
     <p>
       Digitaliseringspatruljen er et hold med vidt forskellige baggrunde — teknologi, forvaltning, beskæftigelse og undervisning. Forskelligheden er ikke en tilfældighed. Det er præcis det, der gør os stærke.
     </p>
@@ -881,25 +1064,35 @@
 
 <!-- ── MÅLGRUPPE + KAN DU ── -->
 <section class="white-section" id="ideen">
-  <div class="two-col-grid">
-    <div class="col-left">
-      <h3>Målgruppe</h3>
-      <ul class="audience-list">
-        <li>Kommuner og jobcentre, der skal forholde sig til AI i sagsbehandling under den nye beskæftigelsesreform</li>
-        <li>Virksomheder, a-kasser og vikarbureauer, der bruger AI i rekruttering og ansættelse og er omfattet af EU's AI Act</li>
-        <li>Skoler og uddannelsesinstitutioner, der vil klæde medarbejdere og ledere på til det nye regulatoriske landskab</li>
-        <li>Uddannelsessteder og jobsøgende der vil bruge AI aktivt i mødet med arbejdsmarkedet</li>
-      </ul>
+  <div class="col-left"><h3>Målgruppe</h3></div>
+  <div class="persona-grid">
+    <div class="persona-card">
+      <img class="persona-photo" src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?w=600&q=80&auto=format&fit=crop" alt="Rådgivning i kommune/jobcenter">
+      <div class="persona-card-body">
+        <h4>Kommuner &amp; jobcentre</h4>
+        <p>Skal beslutte, hvordan beskæftigelsesindsatsen organiseres efter reformen — og har brug for AI-kompetencer og dokumenteret compliance fra start.</p>
+      </div>
     </div>
-    <div class="col-right">
-      <h3>Med Digitaliseringspatruljen kan din organisation:</h3>
-      <ul class="checklist">
-        <li>Kortlægge og vurdere jeres brug af digitalisering og AI i kommunikation, vidensarbejde og daglige processer</li>
-        <li>Opfylde kravene i EU's AI Act til højrisikosystemer</li>
-        <li>Dokumentere ansvarlig AI-anvendelse over for myndigheder og borgere</li>
-        <li>Etablere governance-strukturer der holder i det lange løb</li>
-        <li>Kompetenceløfte medarbejdere og ledere i AI-forståelse og regulering</li>
-      </ul>
+    <div class="persona-card">
+      <img class="persona-photo" src="https://images.unsplash.com/photo-1698047681820-f26b00b6c639?w=600&q=80&auto=format&fit=crop" alt="A-kasse og virksomhed i samarbejde">
+      <div class="persona-card-body">
+        <h4>A-kasser &amp; virksomheder</h4>
+        <p>A-kasser får udvidet ansvar for dagpengemodtagere de første fire måneder. Virksomheder og vikarbureauer bruger AI i rekruttering og er omfattet af EU's AI Act.</p>
+      </div>
+    </div>
+    <div class="persona-card">
+      <img class="persona-photo" src="https://images.unsplash.com/photo-1758691736545-5c33b6255dca?w=600&q=80&auto=format&fit=crop" alt="Undervisning på skole eller uddannelsesinstitution">
+      <div class="persona-card-body">
+        <h4>Skoler &amp; uddannelsesinstitutioner</h4>
+        <p>Skal klæde medarbejdere og ledere på til et regulatorisk landskab, der ændrer sig hurtigere end pensum.</p>
+      </div>
+    </div>
+    <div class="persona-card">
+      <img class="persona-photo" src="https://images.unsplash.com/photo-1622151834677-70f982c9adef?w=600&q=80&auto=format&fit=crop" alt="Jobsøgende der bruger AI aktivt">
+      <div class="persona-card-body">
+        <h4>Jobsøgende</h4>
+        <p>Vil bruge AI aktivt i mødet med et arbejdsmarked, der selv er under omorganisering.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -996,14 +1189,90 @@
   </div>
 </section>
 
-<!-- ── KONTAKT ── -->
-<section class="kontakt-section" id="kontakt">
-  <div class="kontakt-inner">
-    <div class="kontakt-left">
-      <h2>Kom i kontakt.</h2>
-      <p>En uforpligtende samtale hvor vi afklarer jeres behov og finder ud af, om vi er det rette match.</p>
+<!-- ── PATRULJEN (billeder) ── -->
+<section class="patrulje-section">
+  <div class="patrulje-inner">
+    <p class="patrulje-tag">Patruljen</p>
+    <h2 class="patrulje-heading">Bredden bag rådgivningen.</h2>
+    <p class="patrulje-intro">Digitaliseringspatruljen trækker på kompetencer inden for teknologi, forvaltning, beskæftigelse, undervisning, jura, HR, kommunikation og data — den kombination er fundamentet for vores rådgivning.</p>
+    <div class="patrulje-grid">
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80&auto=format&fit=crop" alt="Teknologi">
+        <p>Teknologi</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format&fit=crop" alt="Forvaltning">
+        <p>Forvaltning</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80&auto=format&fit=crop" alt="Beskæftigelse">
+        <p>Beskæftigelse</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80&auto=format&fit=crop" alt="Undervisning">
+        <p>Undervisning</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80&auto=format&fit=crop" alt="Jura &amp; compliance">
+        <p>Jura &amp; compliance</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=400&q=80&auto=format&fit=crop" alt="HR &amp; ledelse">
+        <p>HR &amp; ledelse</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format&fit=crop&sat=-100" alt="Kommunikation">
+        <p>Kommunikation</p>
+      </div>
+      <div class="patrulje-card">
+        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&q=80&auto=format&fit=crop" alt="Data &amp; analyse">
+        <p>Data &amp; analyse</p>
+      </div>
     </div>
-    <div class="kontakt-right">
+  </div>
+</section>
+
+<!-- ── KONTAKT MODAL ── -->
+<div class="kontakt-modal" id="kontaktModal">
+  <div class="kontakt-modal-backdrop" onclick="closeKontaktModal()"></div>
+  <div class="kontakt-modal-panel-wrap">
+    <button class="kontakt-modal-close" onclick="closeKontaktModal()" aria-label="Luk">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  <div class="kontakt-modal-panel" role="dialog" aria-modal="true" aria-label="Kontaktformular">
+
+    <div class="kontakt-modal-left">
+      <div class="kontakt-modal-grid"></div>
+      <svg class="kontakt-modal-flow" viewBox="0 0 300 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 400 C 70 320, 30 220, 130 180 S 250 60, 286 20" stroke="var(--gold)" stroke-width="1.2" fill="none"/>
+        <circle cx="14" cy="400" r="3" fill="var(--gold)"/>
+        <circle cx="130" cy="180" r="3" fill="var(--gold)"/>
+        <circle cx="286" cy="20" r="3" fill="var(--gold)"/>
+      </svg>
+
+      <p class="kontakt-modal-tag">Digitaliseringspatruljen · Kontakt</p>
+      <h2>Lad os kortlægge jeres digitale modenhed.</h2>
+      <p>En uforpligtende samtale hvor vi afklarer jeres behov og finder ud af, om vi er det rette match.</p>
+
+      <div class="kontakt-status-list">
+        <div class="kontakt-status-row"><span class="kontakt-status-dot" style="background:var(--ring-green,#5C9A5F);color:var(--ring-green,#5C9A5F);"></span> Svartid <span class="mono">&lt; 48 timer</span></div>
+        <div class="kontakt-status-row"><span class="kontakt-status-dot" style="background:var(--gold);color:var(--gold);"></span> Digitalisering, AI &amp; human-in-the-loop <span class="mono">✓</span></div>
+        <div class="kontakt-status-row"><span class="kontakt-status-dot" style="background:var(--ring-orange,#C96A24);color:var(--ring-orange,#C96A24);"></span> Uforpligtende samtale <span class="mono">100%</span></div>
+      </div>
+
+      <div class="kontakt-modal-brochure">
+        <div class="kmb-icon">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h4"/></svg>
+        </div>
+        <div>
+          <p class="kmb-title">EU AI Act i din hverdag</p>
+          <p class="kmb-sub">Gratis workshop-materiale · 12 s.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kontakt-modal-right">
+      <h3>Kom i kontakt.</h3>
       <form id="kontaktForm">
 
         <div class="form-row-2">
@@ -1019,35 +1288,63 @@
 
         <div class="form-row-2">
           <div class="form-field">
-            <label for="kemail">E-mail</label>
-            <input type="email" id="kemail" placeholder="din@email.dk" required/>
+            <label for="kcvr">CVR-nummer</label>
+            <input type="text" id="kcvr" placeholder="12345678" inputmode="numeric" pattern="[0-9]*"/>
           </div>
           <div class="form-field">
-            <label for="ktopic">Hvad drejer det sig om?</label>
-            <select id="ktopic">
-              <option value="">Vælg forløb…</option>
-              <option value="minimal-risiko">Minimal risiko — Kortlægning</option>
-              <option value="begraenset-risiko">Begrænset risiko — Gennemsigtighed og oplæring</option>
-              <option value="hoej-risiko">Høj risiko — Compliance og dokumentation</option>
-              <option value="uacceptabel-risiko">Uacceptabel risiko — Risikoscreening</option>
-              <option value="andet">Andet / ved ikke endnu</option>
-            </select>
+            <label for="kemail">E-mail</label>
+            <input type="email" id="kemail" placeholder="din@email.dk" required/>
           </div>
         </div>
 
         <div class="form-field">
-          <label for="kmsg">Kort om dit behov <span style="font-weight:300;opacity:0.5;">(valgfrit)</span></label>
+          <button type="button" class="choice-toggle" onclick="toggleChoiceList(this)">
+            <span>Vælg evt. en af de 4 trin</span>
+            <span class="choice-toggle-arrow"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+          </button>
+          <div class="choice-list" id="choiceList">
+            <div class="choice-row" data-value="Minimal risiko — Kortlægning">
+              <input type="checkbox" style="display:none;"/>
+              <span class="choice-icon"><svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path class="choice-check" d="M6.5 11.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span>
+              Minimal risiko — Kortlægning
+            </div>
+            <div class="choice-row" data-value="Begrænset risiko — Gennemsigtighed og oplæring">
+              <input type="checkbox" style="display:none;"/>
+              <span class="choice-icon"><svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path class="choice-check" d="M6.5 11.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span>
+              Begrænset risiko — Gennemsigtighed og oplæring
+            </div>
+            <div class="choice-row" data-value="Høj risiko — Compliance og dokumentation">
+              <input type="checkbox" style="display:none;"/>
+              <span class="choice-icon"><svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path class="choice-check" d="M6.5 11.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span>
+              Høj risiko — Compliance og dokumentation
+            </div>
+            <div class="choice-row" data-value="Uacceptabel risiko — Risikoscreening">
+              <input type="checkbox" style="display:none;"/>
+              <span class="choice-icon"><svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path class="choice-check" d="M6.5 11.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span>
+              Uacceptabel risiko — Risikoscreening
+            </div>
+            <div class="choice-row choice-row-all" data-value="Andet / ved ikke endnu">
+              <input type="checkbox" style="display:none;"/>
+              <span class="choice-icon"><svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path class="choice-check" d="M6.5 11.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span>
+              Andet / ved ikke endnu
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="kmsg">Kort om dit behov <span style="font-weight:400;opacity:0.5;">(valgfrit)</span></label>
           <textarea id="kmsg" placeholder="Hvad ønsker du at opnå?"></textarea>
         </div>
 
         <button class="btn-submit" type="submit">Send henvendelse</button>
       </form>
-      <div id="formOk" style="display:none;color:var(--navy);margin-top:24px;font-size:15px;font-weight:300;line-height:1.7;">
+      <div id="formOk" style="display:none;color:var(--navy);margin-top:24px;font-size:15px;font-weight:400;line-height:1.7;">
         Tak for din henvendelse. Vi vender tilbage inden for 2 hverdage.
       </div>
     </div>
   </div>
-</section>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -1063,6 +1360,34 @@
   hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
   mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
   function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+  // ── KONTAKT MODAL ──
+  const kontaktModal = document.getElementById('kontaktModal');
+  function openKontaktModal() {
+    kontaktModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeKontaktModal() {
+    kontaktModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('a[href="#kontakt"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      openKontaktModal();
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && kontaktModal.classList.contains('open')) closeKontaktModal();
+  });
+  if (window.location.hash === '#kontakt') openKontaktModal();
+
+  // ── HVAD DREJER DET SIG OM (fold ud) ──
+  function toggleChoiceList(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
 
   // ── ACCORDION ──
   document.querySelectorAll('.accordion-btn').forEach(btn => {
@@ -1098,12 +1423,29 @@
 
   // ── HERO BILLEDSKIFT ──
   const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroQuoteEl = document.getElementById('heroQuote');
+  const heroNameEl = document.getElementById('heroName');
+  function setHeroQuote(slide) {
+    if (!slide) return;
+    const quote = slide.getAttribute('data-quote');
+    const name = slide.getAttribute('data-name');
+    if (heroQuoteEl && quote) {
+      heroQuoteEl.style.opacity = '0';
+      if (heroNameEl) heroNameEl.style.opacity = '0';
+      setTimeout(() => {
+        heroQuoteEl.querySelector('.hero-quote-text').textContent = '"' + quote + '"';
+        heroQuoteEl.style.opacity = '1';
+        if (heroNameEl && name) { heroNameEl.textContent = name; heroNameEl.style.opacity = '1'; }
+      }, 300);
+    }
+  }
   if (heroSlides.length > 1) {
     let heroIdx = 0;
     setInterval(() => {
       heroSlides[heroIdx].classList.remove('active');
       heroIdx = (heroIdx + 1) % heroSlides.length;
       heroSlides[heroIdx].classList.add('active');
+      setHeroQuote(heroSlides[heroIdx]);
     }, 6000);
   }
 

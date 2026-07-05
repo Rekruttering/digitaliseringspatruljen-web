@@ -86,7 +86,7 @@
       font-weight: 500; line-height: 1.2; color: var(--navy); margin-bottom: 32px;
     }
     .intro-left p {
-      font-size: 15px; font-weight: 300; line-height: 1.9;
+      font-size: 15px; font-weight: 400; line-height: 1.9;
       color: rgba(28,27,77,0.8); margin-bottom: 20px;
     }
     .intro-left strong { font-weight: 500; color: var(--navy); }
@@ -134,14 +134,14 @@
       text-transform: uppercase; padding: 5px 10px; margin-bottom: 16px;
     }
     .brochure-body p {
-      font-size: 12px; font-weight: 300; line-height: 1.7;
-      color: rgba(28,27,77,0.7); margin-bottom: 10px;
+      font-size: 13px; font-weight: 400; line-height: 1.7;
+      color: rgba(28,27,77,0.85); margin-bottom: 10px;
     }
     .brochure-body ul {
       list-style: none; padding: 0; margin-top: 12px;
     }
     .brochure-body ul li {
-      font-size: 11px; font-weight: 400; color: rgba(28,27,77,0.65);
+      font-size: 12px; font-weight: 400; color: rgba(28,27,77,0.82);
       padding: 6px 0; border-bottom: 1px solid rgba(28,27,77,0.07);
       display: flex; align-items: center; gap: 8px;
     }
@@ -181,7 +181,7 @@
       font-weight: 300; line-height: 1.05; margin-bottom: 36px;
     }
     .indrommelse-band p {
-      font-size: 16px; font-weight: 300; line-height: 1.9;
+      font-size: 16px; font-weight: 400; line-height: 1.9;
       color: rgba(255,255,255,0.88); margin-bottom: 20px;
     }
     .indrommelse-band strong { font-weight: 500; color: #fff; }
@@ -201,7 +201,7 @@
       letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
     }
     .leverer-block h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; }
-    .leverer-block p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(28,27,77,0.8); margin-bottom: 12px; }
+    .leverer-block p { font-size: 14px; font-weight: 400; line-height: 1.85; color: rgba(28,27,77,0.8); margin-bottom: 12px; }
     .leverer-block p:last-child { margin-bottom: 0; }
 
     /* ── POSITION-BAND (orange-red) ── */
@@ -226,7 +226,7 @@
       font-weight: 300; line-height: 1.1; margin-bottom: 28px;
     }
     .position-band p {
-      font-size: 16px; font-weight: 300; line-height: 1.8; opacity: 0.88; margin-bottom: 16px;
+      font-size: 16px; font-weight: 400; line-height: 1.8; opacity: 0.88; margin-bottom: 16px;
     }
     .position-pyramid {
       position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
@@ -245,7 +245,12 @@
 
     .section-heading {
       font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
-      font-weight: 300; color: var(--navy); margin-bottom: 56px;
+      font-weight: 300; color: var(--navy); margin-bottom: 32px;
+    }
+
+    .section-intro {
+      font-size: 16px; font-weight: 400; color: rgba(28,27,77,0.85);
+      line-height: 1.75; max-width: 680px; margin-bottom: 40px;
     }
 
     .team-grid {
@@ -253,60 +258,75 @@
     }
 
     .team-card {
-      display: grid; grid-template-columns: 180px 1fr;
-      background: transparent;
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(28,27,77,0.08);
+      box-shadow: 0 8px 28px rgba(28,27,77,0.06);
     }
 
     .team-photo {
-      width: 180px; height: 100%;
-      min-height: 220px;
-      object-fit: cover; object-position: center top; display: block;
-    }
-
-    .team-info {
-      background: var(--steel);
-      padding: 28px 28px 0;
-      display: flex; flex-direction: column;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      object-fit: cover; display: block;
+      margin-bottom: 18px;
     }
 
     .team-name {
-      font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: #fff; margin-bottom: 6px;
+      font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px;
     }
 
     .team-title {
-      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85);
-      margin-bottom: 12px; line-height: 1.4;
+      font-size: 13px; font-weight: 600; color: var(--steel);
+      margin-bottom: 14px; line-height: 1.4;
     }
 
     .team-bio {
-      font-size: 13px; font-weight: 300; line-height: 1.7;
-      color: rgba(255,255,255,0.8);
-      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
-      overflow: hidden; flex: 1;
+      font-size: 14px; font-weight: 400; line-height: 1.7;
+      color: rgba(28,27,77,0.65);
     }
 
-    .team-expand {
-      background: var(--navy); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      height: 40px; color: #fff;
-      font-size: 22px; line-height: 1;
-      margin: 16px -28px 0;
-      transition: background 0.2s;
+    .team-readmore {
+      display: flex; align-items: center; gap: 8px; margin-top: 16px;
+      text-decoration: none;
+      font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--navy); transition: gap 0.2s ease;
     }
-    .team-expand:hover { background: rgba(0,0,0,0.3); }
+    .team-readmore:hover { gap: 12px; }
+    .team-readmore .arrow-circle {
+      width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+      transition: transform 0.25s ease;
+    }
+    .team-readmore.open .arrow-circle { transform: rotate(90deg); }
+    .team-readmore { background: none; border: none; padding: 0; cursor: pointer; }
+
+    .team-bio-detail {
+      display: none; margin-top: 18px; padding-top: 18px;
+      border-top: 1px solid rgba(28,27,77,0.1);
+    }
+    .team-bio-detail.open { display: block; }
+    .team-bio-detail p {
+      font-size: 14px; font-weight: 400; line-height: 1.75;
+      color: rgba(28,27,77,0.85); margin-bottom: 14px;
+    }
+    .team-bio-detail p:last-child { margin-bottom: 0; }
+
+    .team-photo-empty {
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1.5px dashed rgba(28,27,77,0.25);
+      color: rgba(28,27,77,0.35);
+      font-size: 24px; font-weight: 400;
+    }
 
     @media (max-width: 768px) {
       .team-section { padding: 56px 28px; }
       .team-grid { grid-template-columns: 1fr; }
-      .team-card { grid-template-columns: 140px 1fr; }
-      .team-photo { width: 140px; min-height: 200px; }
     }
 
     @media (max-width: 480px) {
-      .team-card { grid-template-columns: 1fr; }
-      .team-photo { width: 100%; height: 260px; min-height: unset; }
-      .team-expand { margin: 16px 0 0; }
+      .team-section { padding: 36px 16px; }
     }
 
     
@@ -346,6 +366,13 @@
       line-height: 1.8;
       color: var(--navy);
       margin-bottom: 18px;
+    }
+    .ideen-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px !important;
+      padding-left: 20px;
+      border-left: 2px solid var(--gold);
     }
 
     
@@ -412,6 +439,7 @@
   <button class="mobile-nav-close" onclick="document.getElementById('mobileNav').classList.remove('open')">✕</button>
   <a href="index.html">Forside</a>
   <a href="om-os.html">Om os</a>
+  <a href="eu-ai-act.html">EU AI Act</a>
   <a href="index.html#kontakt">Kontakt</a>
 </nav>
 
@@ -423,6 +451,7 @@
   <nav>
     <a href="index.html">Forside</a>
     <a href="om-os.html" class="active">Om os</a>
+    <a href="eu-ai-act.html">EU AI Act</a>
       <a href="index.html#kontakt" class="header-cta">Kontakt</a>
   </nav>
   <button class="hamburger" onclick="document.getElementById('mobileNav').classList.add('open')">
@@ -436,18 +465,17 @@
 <div class="page-header">
   <p class="breadcrumb">Om os</p>
   <h1 class="page-title">Om Digitaliseringspatruljen</h1>
-  <p class="page-tagline">Et nyt dansk initiativ med store ambitioner — og et klart mandat.</p>
+  <p class="page-tagline">Rådgivning og undervisning i ansvarlig AI og digitalisering — til kommuner, jobcentre, a-kasser og virksomheder.</p>
 </div>
 
 <!-- INTRO + BROCHURE MOCKUP -->
 <div class="intro-wrap">
   <div class="intro-left">
-    <h2><strong>Digitaliseringspatruljen</strong> leverer skræddersyet rådgivning, levende oplæg og praksisnære workshops inden for digitalisering og AI.</h2>
+    <h2><strong>Digitaliseringspatruljen</strong> møder mennesker og organisationer der hvor de er.</h2>
 
-    <p>Vores styrke ligger i vores brede, tværfaglige fundament og en fælles, specialiseret overbygning: Vi har alle studeret Anvendelsen af AI under it-uddannelsen hos IBA Erhvervsakademi.</p>
+    <p>Digitaliseringspatruljen er et hold med vidt forskellige baggrunde — teknologi, forvaltning, beskæftigelse og undervisning. Forskelligheden er ikke en tilfældighed. Det er præcis det, der gør os stærke.</p>
 
-
-    <p>Vi forstår udfordringerne på begge sider af skrivebordet — både hos borgeren, medarbejderen, læreren, den ledige og ledelsen.</p>
+    <p>Vi hjælper med at navigere ansvarligt i et arbejdsliv der forandrer sig hurtigere end nogensinde.</p>
   </div>
 
   <!-- Brochure mockup -->
@@ -546,99 +574,38 @@
 
 <!-- ── PATRULJEN ── -->
 <section class="team-section" id="patruljen">
-  <p class="section-title">Mød patruljen</p>
-  <h2 class="section-heading">En patrulje af eksperter.</h2>
+  <p class="section-title">Bag Digitaliseringspatruljen</p>
+  <h2 class="section-heading">Hvem står bag.</h2>
+  <p class="section-intro">Digitaliseringspatruljen er derfor ikke tænkt som én stemme, men flere. Ambitionen er at samle selvstændige rådgivere og undervisere i en patrulje — udvalgt ud fra specifik faglighed inden for digitalisering og AI i kommunikation og videnarbejde, og de forskellige kompetencer hver især bringer med fra deres karriere. Det er netop den kombination, der skal gøre forskellen, når teori skal omsættes til praksis.</p>
 
   <div class="team-grid">
 
-    <!-- Anne Kjærgaard -->
+    <!-- Karina Maria Nyberg -->
     <div class="team-card">
       <img class="team-photo"
-        src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Anne Kjærgaard"/>
-      <div class="team-info">
-        <p class="team-name">Anne Kjærgaard</p>
-        <p class="team-title">Projektleder</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
+        src="Foto/karina.jpg.jpeg"
+        alt="Karina Maria Nyberg"/>
+      <p class="team-name">Karina Maria Nyberg</p>
+      <p class="team-title">Stifter &amp; Senior AI Compliance-rådgiver</p>
+      <button type="button" class="team-readmore" onclick="toggleKarinaBio(this)">
+        <span class="arrow-circle"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+        Læs mere om Karina
+      </button>
+      <div class="team-bio-detail">
+        <p>AI og digitalisering er sjældent et teknologiproblem. Det er et menneske- og procesproblem — og det kræver en anden slags indsigt at løse.</p>
+        <p>Karina Maria Nyberg har som sagsbehandler anvendt lov om aktiv beskæftigelsesindsats, sygedagpengeloven, retssikkerhedsloven og forvaltningsloven i praksis — truffet og forvaret afgørelser under den lovgivning, kommuner og a-kasser i dag skal digitalisere omkring. Den erfaring er suppleret med en karriere som HR-leder med ansvaret for systemudvikling, jura og compliance, som selvstændig ledelseskonsulent inden for rekruttering og organisationsudvikling, og som fast skribent i Børsen Ledelse om ledelse og organisatorisk forandring.</p>
+        <p>I 2025 formaliserede hun det med en uddannelse i anvendt AI — herunder et akademisk IT-fag om anvendelsen af AI og EU's AI Act, bestået med topkarakteren 10 — med speciale i bias, hallucinationer og EU's AI Act i sagsbehandlingskontekst, herunder de skærpede krav til automatiserede afgørelser og risikoklassificerede AI-systemer i myndighedsudøvelse.</p>
       </div>
     </div>
 
-    <!-- Mikkel Hansen -->
+    <!-- Medstifter søges -->
     <div class="team-card">
-      <img class="team-photo"
-        src="https://images.unsplash.com/photo-1764084052338-23a317e34ea1?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Mikkel Hansen"/>
-      <div class="team-info">
-        <p class="team-name">Mikkel Hansen</p>
-        <p class="team-title">Rådgiver og underviser</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
-      </div>
+      <div class="team-photo team-photo-empty">+</div>
+      <p class="team-name">Medstifter søges</p>
+      <p class="team-title">Åben plads</p>
+      <p class="team-bio">Digitaliseringspatruljen er bygget af én person. Vi leder efter en medstifter med komplementære kompetencer — teknisk, pædagogisk eller forretningsmæssigt.</p>
     </div>
 
-    <!-- Jonas Petersen -->
-    <div class="team-card">
-      <img class="team-photo"
-        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Jonas Petersen"/>
-      <div class="team-info">
-        <p class="team-name">Jonas Petersen</p>
-        <p class="team-title">Forretningsudvikler</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
-      </div>
-    </div>
-
-    <!-- Søren Bjelke -->
-    <div class="team-card">
-      <img class="team-photo"
-        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Lene Dalgaard"/>
-      <div class="team-info">
-        <p class="team-name">Lene Dalgaard</p>
-        <p class="team-title">Rådgiver og underviser</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
-      </div>
-    </div>
-
-    <!-- Medlem 5 -->
-    <div class="team-card">
-      <img class="team-photo"
-        src="https://images.unsplash.com/photo-1642257859842-c95f9fa8121d?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Lars Andersen"/>
-      <div class="team-info">
-        <p class="team-name">Lars Andersen</p>
-        <p class="team-title">Rådgiver og underviser</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
-      </div>
-    </div>
-
-    <!-- Medlem 6 -->
-    <div class="team-card">
-      <img class="team-photo"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=320&h=400&q=80&auto=format&fit=crop&crop=faces"
-        alt="Helle Mortensen"/>
-      <div class="team-info">
-        <p class="team-name">Helle Mortensen</p>
-        <p class="team-title">Underviser og facilitator</p>
-        <p class="team-bio">Kort beskrivelse af baggrund, erfaring og kompetencer. Hvad bringer dette medlem til patruljen, og hvad er deres særlige styrke inden for rådgivning eller undervisning?</p>
-        <button class="team-expand" title="Læs mere">+</button>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="ideen-section" id="ideen-bag">
-  <div class="ideen-inner">
-    <h2 class="section-heading">Idéen bag</h2>
-    <p><strong>Karina Maria Nyberg</strong> har levet det hun rådgiver om. Som sagsbehandler, underviser, skribent i Børsen Ledelse, selvstændig ledelsesrådgiver og HR-leder har hun siddet i begge ender af bordet — og set hvad der sker når mennesker og systemer ikke mødes ordentligt.</p>
-    <p>I 2025 satte hun kursen mod AI og digitalisering. Ikke som et modefænomen, men fordi hun er dybt overbevist om at teknologi aldrig må erstatte det menneskelige blik. At ingen — uanset alder, køn, baggrund eller hvad livet har budt på — bør lades udenfor arbejdsmarkedet fordi udviklingen går for stærkt.</p>
-    <p>Det er det Digitaliseringspatruljen er bygget på.</p>
-    <p>Derfor har hun særligt udvalgt hver enkelt i patruljen — mennesker med forskellig visdom og faglighed, men med én ting til fælles: de har alle prøvet modstand i arbejdslivet. Det er netop den erfaring der gør forskellen.</p>
   </div>
 </section>
 
@@ -659,6 +626,13 @@
     btn.classList.toggle('visible', window.scrollY > 400);
   });
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  function toggleKarinaBio(el) {
+    const detail = el.nextElementSibling;
+    const isOpen = detail.classList.toggle('open');
+    el.classList.toggle('open', isOpen);
+    el.lastChild.textContent = isOpen ? ' Vis mindre' : ' Læs mere om Karina';
+  }
 </script>
 
 </body>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>EU's AI-forordning – Uddybende guide – Digitaliseringspatruljen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E6; --navy: #1C1B4D; --olive: #4A5740;
+      --steel: #3D6B8A; --gold: #B8960C;
+      --orange: #DC8C3C; --amber: #F0C878; --rust: #B45028;
+      --orange-red: #C94A2B; --purple: #3D1A6B;
+      --light: #F8F6F1;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: #fff; color: var(--navy); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    /* ── HEADER ── */
+    .top-section {
+      background: rgba(245,240,230,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(28,27,77,0.1);
+      padding: 0 80px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .top-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .header-logo { display: flex; align-items: center; text-decoration: none; }
+    .top-nav nav { display: flex; gap: 32px; align-items: center; }
+    .top-nav nav a { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(28,27,77,0.7); text-decoration: none; transition: color 0.2s; }
+    .top-nav nav a:hover { color: var(--navy); }
+    .top-nav nav a.active { color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 2px; }
+    .header-cta { background: var(--navy); color: #fff !important; padding: 9px 20px; font-size: 11px !important; border-radius: 1px; }
+    .header-cta:hover { opacity: 0.85; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); margin: 5px 0; }
+
+    /* ── SIDETITEL ── */
+    .page-header { position: relative; background: var(--navy); padding: 48px 80px 40px; overflow: hidden; }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center; opacity: 0.18;
+    }
+    .page-header .breadcrumb, .page-header .page-title, .page-header .page-tagline { position: relative; z-index: 1; }
+    .breadcrumb { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .page-title { font-family: var(--serif); font-size: clamp(30px, 4.2vw, 48px); font-weight: 300; color: #fff; line-height: 1.1; max-width: 780px; }
+    .page-tagline { font-size: 13.5px; font-weight: 400; color: rgba(255,255,255,0.85); margin-top: 12px; max-width: 600px; line-height: 1.65; }
+
+    /* ── LAYOUT: SIDEBAR + INDHOLD ── */
+    .guide-wrap { display: grid; grid-template-columns: 240px 1fr; gap: 64px; max-width: 1180px; margin: 0 auto; padding: 56px 80px 80px; align-items: start; }
+    .guide-toc { position: sticky; top: 90px; }
+    .guide-toc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .guide-toc ul { list-style: none; border-left: 2px solid rgba(28,27,77,0.1); }
+    .guide-toc li { margin-bottom: 2px; }
+    .guide-toc a {
+      display: block; padding: 7px 0 7px 16px; margin-left: -2px; border-left: 2px solid transparent;
+      font-size: 13px; font-weight: 500; color: rgba(28,27,77,0.6); text-decoration: none; transition: color 0.2s, border-color 0.2s;
+    }
+    .guide-toc a:hover, .guide-toc a.active { color: var(--navy); border-left-color: var(--gold); }
+    .guide-content { max-width: 700px; }
+    .guide-section { padding-bottom: 48px; margin-bottom: 48px; border-bottom: 1px solid rgba(28,27,77,0.08); scroll-margin-top: 90px; }
+    .guide-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .guide-section .gs-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #fff; background: var(--gold); padding: 4px 10px; border-radius: 3px; margin-bottom: 14px;
+    }
+    .guide-section h2 { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 30px); font-weight: 500; color: var(--navy); margin-bottom: 18px; line-height: 1.25; }
+    .guide-section p { font-size: 15px; font-weight: 400; line-height: 1.85; color: rgba(28,27,77,0.85); margin-bottom: 16px; }
+    .guide-section p:last-child { margin-bottom: 0; }
+    .guide-section .gs-examples { font-style: italic; color: rgba(28,27,77,0.6); font-size: 14px; }
+    .guide-section strong { color: var(--navy); }
+    .guide-timeline-list { margin: 4px 0 0; }
+    .guide-timeline-list .gt-item { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid rgba(28,27,77,0.06); }
+    .guide-timeline-list .gt-item:last-child { border-bottom: none; }
+    .guide-timeline-list .gt-date { flex: 0 0 auto; width: 130px; font-weight: 700; color: var(--gold); font-size: 14px; }
+    .guide-timeline-list .gt-ms { font-size: 14px; color: rgba(28,27,77,0.8); }
+
+    .source-section { max-width: 700px; margin: 0 auto 80px; padding: 0 80px; }
+    .source-section p { font-size: 12px; color: rgba(28,27,77,0.5); line-height: 1.8; }
+    .source-section a { color: var(--olive); text-decoration: underline; }
+
+    /* ── CTA ── */
+    .cta-band { background: var(--navy); padding: 52px 80px; text-align: center; }
+    .cta-band h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 32px); font-weight: 400; color: #fff; margin-bottom: 20px; }
+    .cta-band a.cta-btn {
+      display: inline-block; background: var(--gold); color: var(--navy); text-decoration: none;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 4px; transition: opacity 0.2s;
+    }
+    .cta-band a.cta-btn:hover { opacity: 0.85; }
+
+    footer { background: #0e0d2e; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 40px; font-size: 12px; letter-spacing: 0.06em; }
+
+    .mobile-nav { display: none; position: fixed; inset: 0; background: var(--navy); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: var(--serif); font-size: 32px; font-weight: 300; color: #fff; text-decoration: none; }
+    .mobile-nav-close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 28px; }
+
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 999;
+      background: var(--navy); color: #fff; border: none; border-radius: 50%;
+      width: 48px; height: 48px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 16px rgba(28,27,77,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { transform: translateY(-3px); background: var(--purple); }
+    #back-to-top svg { width: 20px; height: 20px; }
+
+    /* ── RESPONSIV ── */
+    @media (max-width: 900px) {
+      .guide-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .guide-toc { position: static; }
+      .guide-toc ul { display: flex; flex-wrap: wrap; gap: 4px 0; border-left: none; }
+      .guide-toc li { margin-bottom: 0; }
+      .guide-toc a { padding: 6px 12px; border-left: none; border-radius: 4px; }
+      .guide-toc a:hover, .guide-toc a.active { background: var(--cream); border-left: none; }
+    }
+    @media (max-width: 768px) {
+      .top-section { padding: 0 28px; }
+      .page-header { padding: 36px 28px 30px; }
+      .guide-wrap { padding: 40px 28px 56px; }
+      .source-section { padding: 0 28px; }
+      .cta-band { padding: 40px 28px; }
+      .top-nav nav { display: none; }
+      .hamburger { display: block; }
+    }
+    @media (max-width: 480px) {
+      .guide-timeline-list .gt-item { flex-direction: column; gap: 2px; }
+      .guide-timeline-list .gt-date { width: auto; }
+      #back-to-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+      .mobile-nav a { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="document.getElementById('mobileNav').classList.remove('open')">✕</button>
+  <a href="index.html">Forside</a>
+  <a href="om-os.html">Om os</a>
+  <a href="eu-ai-act.html">EU AI Act</a>
+  <a href="index.html#kontakt">Kontakt</a>
+</nav>
+
+<div class="top-section">
+<div class="top-nav">
+  <a class="header-logo" href="index.html">
+    <img src="Foto/nyt-logo-crop.png" alt="Digitaliseringspatruljen" style="height:80px;width:auto">
+  </a>
+  <nav>
+    <a href="index.html">Forside</a>
+    <a href="om-os.html">Om os</a>
+    <a href="eu-ai-act.html" class="active">EU AI Act</a>
+    <a href="index.html#kontakt" class="header-cta">Kontakt</a>
+  </nav>
+  <button class="hamburger" onclick="document.getElementById('mobileNav').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+</div>
+
+<!-- SIDETITEL -->
+<div class="page-header">
+  <p class="breadcrumb"><a href="eu-ai-act.html">EU AI Act</a> / Uddybende guide</p>
+  <h1 class="page-title">EU's AI-forordning — uddybet</h1>
+  <p class="page-tagline">Den fulde forklaring bag hver af boksene på overblikssiden — skrevet til jer, der ikke har arbejdet med det før.</p>
+</div>
+
+<div class="guide-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="guide-toc">
+    <p class="guide-toc-label">Indhold</p>
+    <ul>
+      <li><a href="#hvad-er-forordningen">Hvad er AI-forordningen?</a></li>
+      <li><a href="#to-typer">To typer AI-løsninger</a></li>
+      <li><a href="#tidslinje">Hvornår gælder reglerne?</a></li>
+      <li><a href="#gennemsigtighed">Gennemsigtighedsforpligtelser</a></li>
+      <li><a href="#hoejrisiko">Højrisiko-AI-systemer</a></li>
+      <li><a href="#forbudt">Forbudte former for AI-praksis</a></li>
+      <li><a href="#aktoerer">Hvem gælder reglerne for?</a></li>
+      <li><a href="#ai-faerdigheder">AI-færdigheder</a></li>
+    </ul>
+  </aside>
+
+  <!-- INDHOLD -->
+  <div class="guide-content">
+
+    <section class="guide-section" id="hvad-er-forordningen">
+      <span class="gs-tag">Grundlag</span>
+      <h2>Hvad er AI-forordningen?</h2>
+      <p>En "forordning" er ikke en anbefaling — det er EU-lov, der gælder direkte i Danmark uden at skulle vedtages særskilt af Folketinget. AI-forordningen (forordning (EU) 2024/1689) er verdens første af sin slags for kunstig intelligens.</p>
+      <p>Formålet er enkelt: gøre det trygt at bruge og udvikle AI, uden at det går ud over borgernes sundhed, sikkerhed eller rettigheder. Den er bygget op omkring en risikobaseret tilgang — jo større risiko en AI-løsning udgør for mennesker, jo flere krav stilles der til den, der bruger den.</p>
+      <p>I praksis betyder det, at de fleste AI-værktøjer (fx stavekontrol eller simpel automatisering) slet ikke er omfattet af særlige krav — det er kun der, hvor AI kan påvirke menneskers rettigheder eller sikkerhed væsentligt, at reglerne for alvor træder i kraft.</p>
+    </section>
+
+    <section class="guide-section" id="to-typer">
+      <span class="gs-tag">Skelnen</span>
+      <h2>To typer AI-løsninger</h2>
+      <p>Det er vigtigt at kende forskellen, fordi den afgør, hvem der har ansvaret — og hvem I skal rette henvendelse til, hvis noget går galt.</p>
+      <p><strong>AI-modeller til almen brug</strong> er de store, bagvedliggende "motorer" — fx GPT, Claude eller Gemini. De færreste kommuner eller a-kasser bygger selv sådan en model. Her ligger ansvaret og tilsynet hos EU-Kommissionen, ikke hos jer.</p>
+      <p><strong>AI-systemer</strong> er de konkrete løsninger, I rent faktisk møder og bruger i hverdagen — fx en chatbot på jeres hjemmeside, et system der sorterer ansøgninger, eller et værktøj der understøtter sagsbehandling. Det er her, langt de fleste af jeres organisationers forpligtelser opstår, og tilsynet ligger hos de danske myndigheder.</p>
+    </section>
+
+    <section class="guide-section" id="tidslinje">
+      <span class="gs-tag">Tidslinje</span>
+      <h2>Hvornår gælder reglerne?</h2>
+      <p>Reglerne ruller ind i etaper i stedet for at gælde fra én dag til den næste — det giver organisationer tid til at forberede sig.</p>
+      <div class="guide-timeline-list">
+        <div class="gt-item"><span class="gt-date">1. aug 2024</span><span class="gt-ms">Forordningen træder formelt i kraft.</span></div>
+        <div class="gt-item"><span class="gt-date">2. feb 2025</span><span class="gt-ms">De første konkrete krav gælder: forbudte AI-praksisser, og krav om AI-færdigheder hos personalet.</span></div>
+        <div class="gt-item"><span class="gt-date">2. aug 2025</span><span class="gt-ms">Reglerne for de store AI-modeller (som GPT/Claude) træder i kraft.</span></div>
+        <div class="gt-item"><span class="gt-date">2. aug 2026</span><span class="gt-ms">Det store vendepunkt: hovedparten af reglerne gælder nu, herunder gennemsigtighed og de fleste højrisikosystemer.</span></div>
+        <div class="gt-item"><span class="gt-date">2. aug 2027</span><span class="gt-ms">Sidste højrisikoregler for AI indlejret i regulerede produkter.</span></div>
+        <div class="gt-item"><span class="gt-date">2. aug 2030</span><span class="gt-ms">Frist for offentlige højrisiko-AI-systemer.</span></div>
+        <div class="gt-item"><span class="gt-date">31. dec 2030</span><span class="gt-ms">Sidste frist for AI i store EU-IT-systemer.</span></div>
+      </div>
+      <p style="margin-top:20px;">Se den fulde visuelle tidslinje på <a href="eu-ai-act.html#roadmap" style="color:var(--olive);">overblikssiden</a>.</p>
+    </section>
+
+    <section class="guide-section" id="gennemsigtighed">
+      <span class="gs-tag">Fra 2. aug 2026</span>
+      <h2>Gennemsigtighedsforpligtelser</h2>
+      <p>Denne kategori handler om ærlighed over for borgeren: folk skal altid kunne gennemskue, at de har med en AI at gøre — ikke et menneske.</p>
+      <p>I praksis betyder det, at en chatbot skal sige fra starten, at den er en chatbot, og at billeder, tekst eller video, som er skabt eller ændret af AI, skal markeres tydeligt som netop dét.</p>
+      <p class="gs-examples">Fx: en chatbot på kommunens hjemmeside, AI-genereret information til borgere, deepfakes og syntetisk indhold.</p>
+    </section>
+
+    <section class="guide-section" id="hoejrisiko">
+      <span class="gs-tag">Fra 2026/2027</span>
+      <h2>Højrisiko-AI-systemer</h2>
+      <p>Højrisiko betyder ikke, at systemet er forbudt — det betyder, at det kan have alvorlig betydning for et menneskes liv, og derfor skal bruges med langt mere omtanke og dokumentation.</p>
+      <p>I praksis stiller det krav om, at organisationen kan dokumentere, hvordan systemet virker, løbende holder øje med, om det stadig gør sit arbejde korrekt, og sikrer, at et menneske altid har det sidste ord i vigtige beslutninger.</p>
+      <p class="gs-examples">Fx: software der sorterer eller rangerer ansøgninger, systemer der bruges til eksamensbedømmelse, eller AI i kritisk infrastruktur.</p>
+    </section>
+
+    <section class="guide-section" id="forbudt">
+      <span class="gs-tag">Siden 2. feb 2025</span>
+      <h2>Forbudte former for AI-praksis</h2>
+      <p>Denne kategori er der ikke noget at forhandle om: er en AI-praksis først kategoriseret som forbudt, må den ikke bruges — uanset hvor gammelt systemet er, eller hvor gode intentionerne bag er.</p>
+      <p>Det gælder kun et fåtal af meget indgribende anvendelser, så de fleste organisationer vil aldrig støde på denne kategori i praksis — men det er godt at kende grænsen.</p>
+      <p class="gs-examples">Fx: AI der manipulerer folks adfærd på en skadelig måde, eller følelsesgenkendelse brugt på arbejdspladser og uddannelsesinstitutioner.</p>
+    </section>
+
+    <section class="guide-section" id="aktoerer">
+      <span class="gs-tag">Aktører</span>
+      <h2>Hvem gælder reglerne for?</h2>
+      <p>Forordningen kalder de forskellige aktører "operatører" — og hvilke krav der gælder for jer, afhænger helt af, hvilken rolle I har.</p>
+      <p>Et konkret eksempel: hvis jeres jobcenter tager et AI-værktøj i brug fra en ekstern leverandør — fx til at understøtte sagsbehandling eller matche ledige med job — så er I <strong>idriftsætter</strong>. I har ikke bygget systemet selv, men I har ansvaret for, at det bruges korrekt, at medarbejderne er informeret, og at der er menneskeligt tilsyn med de beslutninger, det er med til at træffe.</p>
+      <p><strong>Udbyder</strong> er i stedet den virksomhed, der har udviklet og markedsført systemet under eget navn — det vil typisk være jeres leverandør, ikke jer selv.</p>
+      <p>Der findes også nogle mere sjældne roller: <strong>bemyndiget repræsentant, importør, distributør</strong> og <strong>producenter af produkter</strong> — relevante hvis I fx videresælger eller tilpasser et system. Og endelig er der <strong>de berørte personer</strong>: borgere, jobansøgere og elever, som mærker konsekvenserne af systemets output, og som forordningen er sat i verden for at beskytte.</p>
+    </section>
+
+    <section class="guide-section" id="ai-faerdigheder">
+      <span class="gs-tag">Krav til personale</span>
+      <h2>AI-færdigheder</h2>
+      <p>Dette krav er faktisk et af de bredeste i hele forordningen — det gælder, uanset hvor lille eller ufarlig en AI-løsning ellers er kategoriseret.</p>
+      <p>I praksis betyder det, at medarbejdere, der bruger eller arbejder med AI-værktøjer, skal forstå grundlæggende, hvad værktøjet kan og ikke kan, hvor det kan tage fejl (fx "hallucinationer"), og hvornår der er brug for en menneskelig vurdering oveni. Det handler ikke om at gøre alle til tekniske eksperter — men om at sikre en sund, kritisk brug af AI i hverdagen.</p>
+      <p>Det er præcis her, workshops og kompetenceforløb typisk kommer ind i billedet for en organisation.</p>
+    </section>
+
+  </div>
+</div>
+
+<!-- KILDE -->
+<section class="source-section">
+  <p>Kilde: Digitaliseringsstyrelsen (digst.dk), "Reglerne i AI-forordningen" — <a href="https://digst.dk/tilsyn/ai-forordningen/reglerne-i-ai-forordningen/" target="_blank" rel="noopener">digst.dk/tilsyn/ai-forordningen</a>. Forordning (EU) 2024/1689, EUR-Lex. Denne side er et forenklet overblik og erstatter ikke juridisk rådgivning.</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Usikker på, hvor jeres organisation står?</h2>
+  <a href="index.html#kontakt" class="cta-btn">Book en kortlægning →</a>
+</section>
+
+<footer>
+  © 2026 Digitaliseringspatruljen &nbsp;·&nbsp; <a href="index.html" style="color:inherit;text-decoration:none;">Tilbage til forsiden</a>
+</footer>
+
+<button id="back-to-top" aria-label="Tilbage til toppen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+<script>
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { btn.classList.toggle('visible', window.scrollY > 400); });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Highlight active TOC item on scroll
+  const sections = document.querySelectorAll('.guide-section');
+  const tocLinks = document.querySelectorAll('.guide-toc a');
+  function updateActiveToc() {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 120) current = sec.id;
+    });
+    tocLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveToc);
+  updateActiveToc();
+</script>
+
+</body>
+</html>
